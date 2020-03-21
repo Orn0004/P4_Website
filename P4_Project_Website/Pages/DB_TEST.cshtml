@@ -8,26 +8,30 @@
 @model DB_TESTModel
 @functions
 {
+    // create variable that contains database login query.
     private static string myConnectionString = "data source=p4project.database.windows.net;Initial Catalog=P4; User ID=madol;Password=KanneKaffe123";
 
-
+    // list class that simply reads the specific table (Bruger) and prints it out.
     public List<Bruger> test()
     {
-
+    // variable creation
         var brugerList = new List<Bruger>();
         SqlConnection cnn = null;
 
         try
         {
-
+            // connects to the database.
             cnn = new SqlConnection(myConnectionString);
             cnn.Open();
-
+            
+            // create a variable with the query command.
             SqlCommand command = new SqlCommand("SELECT * FROM Bruger", cnn);
 
 
+            //reads the table.
             using (SqlDataReader reader = command.ExecuteReader())
             {
+                //as it reads a single column it will print it out untill theres no more in the table.
                 while (reader.Read())
                 {
                     brugerList.Add(new Bruger
@@ -46,6 +50,7 @@
         }
         finally
         {
+            // closes the connection if cnn is null.
             if (cnn != null)
                 cnn.Close();
 
