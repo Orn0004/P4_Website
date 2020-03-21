@@ -1,8 +1,101 @@
 ﻿@page
+@using WebMatrix.Data;
+@using System;
+@using P4_Data.Entities;
+@using System.Collections.Generic;
+@using System.Data.SqlClient;
+@using System.Text;
 @model DB_TESTModel
-@{
+@functions
+{
+    private static string myConnectionString = "data source=p4project.database.windows.net;Initial Catalog=P4; User ID=madol;Password=KanneKaffe123";
+
+
+    public List<Bruger> test()
+    {
+
+        var brugerList = new List<Bruger>();
+        SqlConnection cnn = null;
+
+        try
+        {
+
+            cnn = new SqlConnection(myConnectionString);
+            cnn.Open();
+
+            SqlCommand command = new SqlCommand("SELECT * FROM Bruger", cnn);
+
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    brugerList.Add(new Bruger
+                    {
+                        Fornavn = (string)reader[0],
+                        Efternavn = (string)reader[1],
+                        Brugernavn = (string)reader[2],
+
+                    });
+                }
+            }
+        }
+        catch (SqlException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            if (cnn != null)
+                cnn.Close();
+
+        }
+        return brugerList;
+    }
 }
+
 
 <h1>
     Database Test side.
 </h1>
+
+
+<form action="test">
+    <label for="Fornavn">First name:</label><br>
+    <input type="text" id="Fornavn" name="Fornavn" value="John"><br>
+    <label for="Efternavn">Last name:</label><br>
+    <input type="text" id="Efternavn" name="Efternavn" value="Doe"><br>
+    <label for="Brugernavn">Brugernavn:</label><br>
+    <input type="text" id="Brugernavn" name="Brugernavn" value="Doe"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Fornavn</th>
+            <th>Efternavn</th>
+            <th>Brugernavn</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in test())
+        {
+            <tr>
+                <td>@row.Fornavn</td>
+                <td>@row.Efternavn</td>
+                <td>@row.Brugernavn</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    table, th, td {
+        border: solid 1px #bbbbbb;
+        border-collapse: collapse;
+        padding: 2px;
+    }
+</style>
+
