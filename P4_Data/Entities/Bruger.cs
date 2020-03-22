@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace P4_Data.Entities
+﻿namespace P4_Data.Entities
 {
-    // a class that contains the different entities and allows us to modify and see it.
+    // one class per entity you dirty animals
     public class Bruger
     {
         public string Fornavn { get; set; }

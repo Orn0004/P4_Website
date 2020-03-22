@@ -1,0 +1,14 @@
+﻿@page
+<h1>
+    Database Test side.
+</h1>
+
+<form asp-controller="Form" asp-action="Save" method="post">
+    <label for="Fornavn">First name:</label><br>
+    <input type="text" id="Fornavn" name="Fornavn"><br>
+    <label for="Efternavn">Last name:</label><br>
+    <input type="text" id="Efternavn" name="Efternavn"><br>
+    <label for="Brugernavn">Brugernavn:</label><br>
+    <input type="text" id="Brugernavn" name="Brugernavn"><br><br>
+    <input type="submit" id="SubmitButton1" value="add to database" />
+</form>

@@ -1,0 +1,34 @@
+﻿@using P4_Data.Entities;
+@model IEnumerable<Bruger>
+@{
+    ViewData["Title"] = "Overview";
+}
+
+<h1>Overview</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Fornavn</th>
+            <th>Efternavn</th>
+            <th>Brugernavn</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            <tr>
+                <td>@row.Fornavn</td>
+                <td>@row.Efternavn</td>
+                <td>@row.Brugernavn</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    table, th, td {
+        border: solid 1px #bbbbbb;
+        border-collapse: collapse;
+        padding: 2px;
+    }
+</style>

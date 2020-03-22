@@ -12,9 +12,9 @@
     private static string myConnectionString = "data source=p4project.database.windows.net;Initial Catalog=P4; User ID=madol;Password=KanneKaffe123";
 
     // list class that simply reads the specific table (Bruger) and prints it out.
-    public List<Bruger> test()
+    public List<Bruger> showDbTest()
     {
-    // variable creation
+        // variable creation
         var brugerList = new List<Bruger>();
         SqlConnection cnn = null;
 
@@ -23,7 +23,7 @@
             // connects to the database.
             cnn = new SqlConnection(myConnectionString);
             cnn.Open();
-            
+
             // create a variable with the query command.
             SqlCommand command = new SqlCommand("SELECT * FROM Bruger", cnn);
 
@@ -31,7 +31,7 @@
             //reads the table.
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                //as it reads a single column it will print it out untill theres no more in the table.
+                //as it reads a single rows it will print it out untill theres no more in the table.
                 while (reader.Read())
                 {
                     brugerList.Add(new Bruger
@@ -57,7 +57,20 @@
         }
         return brugerList;
     }
+
+    public  void Test123()
+    {
+        Console.WriteLine("hej jeg elsker tissemand, hov lag");
+
+
+    }
+
+    
+
 }
+
+
+
 
 
 <h1>
@@ -65,15 +78,19 @@
 </h1>
 
 
-<form action="test">
+<form asp-action="Test123()" runat="server">
     <label for="Fornavn">First name:</label><br>
-    <input type="text" id="Fornavn" name="Fornavn" value="John"><br>
+    <input type="text" id="Fornavn" name="Fornavn"><br>
     <label for="Efternavn">Last name:</label><br>
-    <input type="text" id="Efternavn" name="Efternavn" value="Doe"><br>
+    <input type="text" id="Efternavn" name="Efternavn"><br>
     <label for="Brugernavn">Brugernavn:</label><br>
-    <input type="text" id="Brugernavn" name="Brugernavn" value="Doe"><br><br>
-    <input type="submit" value="Submit">
+    <input type="text" id="Brugernavn" name="Brugernavn"><br><br>
+    <input type="submit" id="submitButton1" value="add to database" />
 </form>
+
+<div>
+    <a class="btn btn-primary" href="@Url.Action("Create", "TestController")">button test</a>
+</div>
 
 
 
@@ -86,7 +103,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var row in test())
+        @foreach (var row in showDbTest())
         {
             <tr>
                 <td>@row.Fornavn</td>
