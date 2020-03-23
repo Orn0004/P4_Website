@@ -36,5 +36,13 @@ namespace P4ProjectWebsite.Controllers
             q.Insert(b);
             return RedirectToAction("Overview");
         }
+
+        public IActionResult OpenJobs()
+        {
+            var q = new GetJobs(_configuration);
+            return View(q.GetList());
+        }
+
+        
     }
 }

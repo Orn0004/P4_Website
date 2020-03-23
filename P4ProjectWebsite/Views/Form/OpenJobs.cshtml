@@ -1,0 +1,36 @@
+﻿@using P4_Data.Entities;
+@model IEnumerable<Jobs>
+@{
+    ViewData["Title"] = "OpenJobs";
+}
+
+<h1>Job Showcase Placeholder</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Jobbet</th>
+            <th>Beskrivelse</th>
+            <th>Løn</th>
+            <th>Varighed</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            <tr>
+                <td>@row.JobTitel</td>
+                <td>@row.JobBeskrivelse</td>
+                <td>@row.JobLøn Kroner i timen</td>
+                <td>@row.JobVarighed dage</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    table, th, td {
+        border: solid 1px #bbbbbb;
+        border-collapse: collapse;
+        padding: 2px;
+    }
+</style>
