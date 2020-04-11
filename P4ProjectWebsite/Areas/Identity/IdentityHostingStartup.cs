@@ -14,14 +14,7 @@ namespace P4ProjectWebsite.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                services.AddDbContext<P4Context>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("P4ContextConnection")));
-
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<P4Context>();
-            });
+            
         }
     }
 }
