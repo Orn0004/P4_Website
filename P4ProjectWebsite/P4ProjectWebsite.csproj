@@ -32,12 +32,6 @@
     <ProjectReference Include="..\P4_Data\P4_Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Admin\" />
-    <Folder Include="Controllers\Contributor\" />
-    <Folder Include="Controllers\Supplier\" />
-  </ItemGroup>
-
 
 
 </Project>
