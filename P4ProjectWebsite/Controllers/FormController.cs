@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using P4_Data.Entities;
 using P4_Data.Queries;
 
 namespace P4ProjectWebsite.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FormController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -43,6 +45,6 @@ namespace P4ProjectWebsite.Controllers
             return View(q.GetList());
         }
 
-        
+
     }
 }

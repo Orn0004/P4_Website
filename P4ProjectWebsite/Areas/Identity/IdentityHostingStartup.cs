@@ -14,7 +14,13 @@ namespace P4ProjectWebsite.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            
+
         }
     }
+    //Tester lige det her
+    //public class ApplicationRoleManager : RoleManager<ApplicationRole>
+    //{
+    //    public ApllicationRoleManager(IRoleStore<ApplicationRole, string> roleStore) : base(roleStore) { }
+    //    public static ApplicationRoleManager
+    //}
 }

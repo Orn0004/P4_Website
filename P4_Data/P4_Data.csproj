@@ -5,6 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="Entities\RoleEntity.cs" />
+    <Compile Remove="Entities\RoleViewModel.cs" />
+    <Compile Remove="Entities\UsersViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Entities\NewFile1.txt" />
+    <None Remove="Entities\NewFile2.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>

@@ -20,6 +20,7 @@ namespace P4ProjectWebsite.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 

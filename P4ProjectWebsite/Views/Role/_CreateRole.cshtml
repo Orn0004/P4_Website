@@ -1,0 +1,12 @@
+﻿@using P4_Data.Entities; 
+@model UsersRole
+
+@{ }
+
+<div>
+    <form asp-controller="Role" asp-action="CreateRole" method="post">
+        <label>Create new Role</label>
+        <input asp-for="Name" />
+        <input type="submit" value="Create" />
+    </form>
+</div>

@@ -30,11 +30,16 @@ namespace P4ProjectWebsite
                 services.AddDbContext<P4Context>(options =>
                     options.UseSqlServer(
                         Configuration.GetConnectionString("P4Database")));
-
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<P4Context>();
-                services.AddControllersWithViews();
-                services.AddRazorPages();
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<P4Context>().AddDefaultTokenProviders().AddDefaultUI(); ;
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddAuthentication();
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminAccess", policy => policy.RequireRole("Admin"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
