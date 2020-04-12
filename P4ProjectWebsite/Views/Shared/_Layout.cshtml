@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,7 +27,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Form" asp-action="OpenJobs">Available Jobs</a>
+                        </li>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "AdminAccess")).Succeeded)
+                        {
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="RoleIndex">Rolls</a>
+                        </li>
+                        }
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "AdminAccess")).Succeeded)
+                        {    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Database edit test</a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Form" asp-action="Index">Form</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Form" asp-action="Overview">Overview</a>
+                            </li>
+                         }
+                               
+                                </ul>
                 </div>
                 <partial name="_LoginPartial" />
             </div>

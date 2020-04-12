@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace P4ProjectWebsite.Controllers.Supplier
 {
-    [Authorize(Roles = "Supplier")]
+    //[Authorize(Roles = "Supplier")]
     public class SindexController : Controller
     {
         public IActionResult Index()
