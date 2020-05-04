@@ -6,7 +6,7 @@ using P4_Data.Queries;
 
 namespace P4ProjectWebsite.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "AdminAccess")]
     public class FormController : Controller
     {
         private readonly IConfiguration _configuration;

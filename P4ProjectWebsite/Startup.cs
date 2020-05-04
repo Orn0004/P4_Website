@@ -26,20 +26,37 @@ namespace P4ProjectWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
-                services.AddDbContext<P4Context>(options =>
-                    options.UseSqlServer(
-                        Configuration.GetConnectionString("P4Database")));
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<P4Context>().AddDefaultTokenProviders().AddDefaultUI(); ;
+
+            services.AddDbContext<P4Context>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("P4Database")));
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 6;
+            })
+                .AddEntityFrameworkStores<P4Context>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                //options.User.RequireUniqueEmail = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+            });
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddAuthentication();
-            
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminAccess", policy => policy.RequireRole("Admin"));
-                
             });
         }
 
