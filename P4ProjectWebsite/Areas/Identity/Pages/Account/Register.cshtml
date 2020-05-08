@@ -5,25 +5,6 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <div SupplierProfile>
-            Supplier Profile:
-            <label class="switch">
-                <input type="checkbox" id="SupSwitch" class="ProfileSwitch" onclick="check(this); ">
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div ContributerProfile>
-            Contributer Profile:
-            <label class="switch">
-                <input type="checkbox" id="ConSwitch" class="ProfileSwitch" onclick="check(this);">
-                <span class="slider round"></span>
-            </label>
-
-        </div>
-    </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
             <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -55,39 +36,6 @@
         </section>
     </div>
 </div>
-@* Script *@
-<script>
-    function check(input) {
-        var checkboxes = document.getElementsByClassName("ProfileSwitch");
-
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked == true) {
-                checkboxes[i].checked = false;
-            }
-        }
-        if (input.checked == true) {
-            input.checked = false;
-        }
-        else {
-            input.checked = true;
-        }
-
-        FilterShow();
-    }
-    function FilterShow() {
-
-        var checkBox = document.getElementById("ConSwitch");
-        var filter1 = document.getElementById("filterRegister")
-        var filter2 = document.getElementById("filterRegister")
-
-        if (checkBox.checked == true) {
-            filter1.style.display = "block";
-            filter2.style.display = "block";
-        } else {
-            filter1.style.display = "none";
-            filter2.style.display = "none";
-        }
-    }
 </script>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -6,7 +6,7 @@ using P4_Data.Queries;
 
 namespace P4ProjectWebsite.Controllers
 {
-    [Authorize(Policy = "AdminAccess")]
+    //[Authorize(Policy = "AdminAccess")]
     public class FormController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -19,7 +19,10 @@ namespace P4ProjectWebsite.Controllers
         {
             return View();
         }
-
+        public IActionResult InfoSave()
+        {
+            return RedirectToAction("RegisterInfo");
+        }
         public IActionResult Overview()
         {
             var q = new GetBruger(_configuration);
