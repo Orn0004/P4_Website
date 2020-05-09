@@ -4,27 +4,21 @@
 
 <h1>RegisterInfo</h1>
 
-<form asp-controller="Form" asp-action="InfoSave" method="post">
-    <div SupplierProfile>
-        Supplier Profile:
-        <label class="switch">
-            <input type="checkbox" id="SupSwitch" class="ProfileSwitch" onclick="check(this); ">
-            <span class="slider round"></span>
-        </label>
-    </div>
-    <div ContributerProfile>
-        Contributer Profile:
-        <label class="switch">
-            <input type="checkbox" id="ConSwitch" class="ProfileSwitch" onclick="check(this);">
-            <span class="slider round"></span>
-        </label>
+<div id="ck-button">
+    <label>
+        <input type="checkbox" id="SupSwitch" class="ProfileSwitch" onclick="check(this); "> <span>Supplier</span>
+    </label>
+</div>
 
-    </div>
-</form>
+<div id="ck-button">
+    <label>
+        <input type="checkbox" id="ConSwitch" class="ProfileSwitch" onclick="check(this);"> <span>Contributor</span>
+    </label>
+</div>
 
 
-    @* Functionality (js) *@
-    <script>
+@* Functionality (js) *@
+<script>
     function check(input) {
         var checkboxes = document.getElementsByClassName("ProfileSwitch");
 
@@ -56,3 +50,4 @@
             filter2.style.display = "none";
         }
     }
+</script>
