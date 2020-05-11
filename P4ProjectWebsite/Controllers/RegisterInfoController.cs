@@ -38,12 +38,10 @@ namespace P4ProjectWebsite.Controllers
             // assigns a variable that finds the user that has that specific email address.
             var user = await _userManager.FindByEmailAsync(vm.UserEmail);
 
-            if (vm.Delete)
-                await _userManager.RemoveFromRoleAsync(user, vm.Role);
-            else
-                await _userManager.AddToRoleAsync(user, vm.Role);
+            await _userManager.AddToRoleAsync(user, vm.Role);
 
-            return RedirectToAction("RoleIndex");
+            return RedirectToAction("Index");
         }
+
     }
 }

@@ -19,10 +19,7 @@ namespace P4ProjectWebsite.Controllers
         {
             return View();
         }
-        public IActionResult InfoSave()
-        {
-            return RedirectToAction("RegisterInfo");
-        }
+       
         public IActionResult Overview()
         {
             var q = new GetBruger(_configuration);

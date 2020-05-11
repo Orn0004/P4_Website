@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Form\RegisterInfo.cshtml" />
     <Content Remove="Views\Shared\_UserLayout.cshtml" />
   </ItemGroup>
 
