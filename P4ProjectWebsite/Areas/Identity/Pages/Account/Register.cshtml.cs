@@ -75,7 +75,6 @@ namespace P4ProjectWebsite.Areas.Identity.Pages.Account
         }
 
 
-
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -102,7 +101,9 @@ namespace P4ProjectWebsite.Areas.Identity.Pages.Account
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         //return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
-                        return RedirectToAction("Index", "RegisterInfo",  new { email = Input.Email , area = "Controllers" });
+                        return RedirectToAction("Index", "RegisterInfo", new { email = Input.Email});
+
+
                     }
                     else
                     {

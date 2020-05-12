@@ -30,8 +30,15 @@ namespace P4ProjectWebsite.Controllers
         {
             return View("RegisterInfo");
         }
-        
-        
+
+        //[HttpGet]
+        //public ActionResult Submit(string Role)
+        //{
+
+
+
+        //    return RedirectToAction("UpdateRole");
+        //}
         [HttpPost]
         public async Task<IActionResult> UpdateRole(RolesEntityUpdate vm)
         {

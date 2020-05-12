@@ -77,6 +77,7 @@ namespace P4ProjectWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateRole (RolesEntityUpdate vm)
         {
+            
             // assigns a variable that finds the user that has that specific email address.
             var user = await _userManager.FindByEmailAsync(vm.UserEmail);
 
