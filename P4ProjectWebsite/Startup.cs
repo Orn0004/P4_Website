@@ -57,6 +57,7 @@ namespace P4ProjectWebsite
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminAccess", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("UserAccess", policy => policy.RequireRole("Contributor" , "Supplier"));
             });
         }
 

@@ -13,9 +13,11 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Identity\Pages\Account\Manage\MySignInManager.cs" />
+    <Compile Remove="Models\UsersRole.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Form\Overview.cshtml" />
     <Content Remove="Views\Form\RegisterInfo.cshtml" />
     <Content Remove="Views\Shared\_UserLayout.cshtml" />
   </ItemGroup>

@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using P4ProjectWebsite.Models;
 using P4ProjectWebsite.Data;
 using P4_Data.Entities;
+using P4ProjectWebsite.Roles;
 
 namespace P4ProjectWebsite.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
