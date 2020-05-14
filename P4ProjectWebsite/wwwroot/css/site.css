@@ -69,3 +69,42 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+#ck-button {
+    margin: 4px;
+    background-color: #EFEFEF;
+    border-radius: 4px;
+    border: 1px solid #D0D0D0;
+    overflow: auto;
+    float: left;
+}
+
+    #ck-button:hover {
+        background: #9fcbd8;
+    }
+
+#ck-button label {
+    float: left;
+    /*width: 4.0em;*/
+}
+
+#ck-button label span {
+        text-align: center;
+        padding: 3px 3px;
+        display: block;
+        width:400px;
+        height:150px;
+    }
+
+#ck-button label input {
+        position: absolute;
+        top: -20px;
+    }
+
+    #ck-button input:checked + span {
+        background-color: #bfe8ec;
+    }
+
+
+
+

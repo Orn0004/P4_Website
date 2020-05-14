@@ -6,9 +6,16 @@
 
   <ItemGroup>
     <Compile Remove="Class1.cs" />
+    <Compile Remove="Entities\Bruger.cs" />
+    <Compile Remove="Entities\DisplayViewModel.cs" />
     <Compile Remove="Entities\RoleEntity.cs" />
+    <Compile Remove="Entities\RolesEntityUpdate.cs" />
     <Compile Remove="Entities\RoleViewModel.cs" />
+    <Compile Remove="Entities\UsersEntity.cs" />
+    <Compile Remove="Entities\UsersRole.cs" />
     <Compile Remove="Entities\UsersViewModel.cs" />
+    <Compile Remove="Queries\GetBruger.cs" />
+    <Compile Remove="Queries\SaveBruger.cs" />
   </ItemGroup>
 
   <ItemGroup>
