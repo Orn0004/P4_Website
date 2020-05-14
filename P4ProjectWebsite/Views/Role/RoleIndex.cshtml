@@ -6,16 +6,6 @@
 @{ }
 
 <div>
-    <h2>Create User</h2>
-    <div>
-        <form asp-controller="Roles" asp-action="CreateUser" method="post">
-            <label>User Email</label>
-            <input name="email" value="" />
-            <input type="submit" value="Create User" />
-        </form>
-    </div>
-</div>
-<div>
     <div>
         <h2>Role List</h2>
         <ul>
@@ -27,7 +17,6 @@
             }
         </ul>
     </div>
-    <partial name="_CreateRole" model="new UsersRole()">
 </div>
 <div>
     <partial name="_AddUserToRole" model="new RolesEntityUpdate() { Users = Model.Users, Roles = Model.Roles }">
