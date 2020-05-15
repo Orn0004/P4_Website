@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using P4ProjectWebsite.Models;
 using P4ProjectWebsite.Models.Queries;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Principal;
+using System.Security.Claims;
 
 namespace P4ProjectWebsite.Controllers.Supplier
 {
@@ -15,10 +18,14 @@ namespace P4ProjectWebsite.Controllers.Supplier
     public class TaskController : Controller
     {
         private readonly IConfiguration _configuration;
-        public TaskController(IConfiguration configuration)
+        private readonly UserManager<IdentityUser> _userManager;
+        public TaskController(IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             _configuration = configuration;
+            _userManager = userManager;
+
         }
+
 
         public IActionResult Index()
         {
@@ -26,6 +33,8 @@ namespace P4ProjectWebsite.Controllers.Supplier
         }
         public IActionResult Save()
         {
+            //var userId = User.Identity.GetUserId();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var b = new Tasks
             {
                 Title = HttpContext.Request.Form["Title"],
