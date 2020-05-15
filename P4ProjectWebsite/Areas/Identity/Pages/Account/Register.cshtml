@@ -5,70 +5,119 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <h4>Create a new account.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.UserName"></label>
-                    <input asp-for="Input.UserName" class="form-control" />
-                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.ConfirmPassword"></label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Name"></label>
-                    <input asp-for="Input.Name" class="form-control" />
-                    <span asp-validation-for="Input.Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Address"></label>
-                    <input asp-for="Input.Address" class="form-control" />
-                    <span asp-validation-for="Input.Address" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.City"></label>
-                    <input asp-for="Input.City" class="form-control" />
-                    <span asp-validation-for="Input.City" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.ZipCode"></label>
-                    <input asp-for="Input.ZipCode" class="form-control" />
-                    <span asp-validation-for="Input.ZipCode" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.PhoneNumber"></label>
-                    <input asp-for="Input.PhoneNumber" class="form-control" />
-                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
+<div class="col-md-6 col-md-offset-2">
+    <section>
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.UserName"></label>
+                <input asp-for="Input.UserName" class="form-control" />
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Address"></label>
+                <input asp-for="Input.Address" class="form-control" />
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.City"></label>
+                <input asp-for="Input.City" class="form-control" />
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ZipCode"></label>
+                <input asp-for="Input.ZipCode" class="form-control" />
+                <span asp-validation-for="Input.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                     <label asp-for="Input.SelectedRole"></label>
                     <select asp-for="Input.SelectedRole">
                         <option value="Contributor">Contributor</option>
                         <option value="Supplier">Supplier</option>
                     </select>
-                    <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>                   
+                    <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
 
                 </div>
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
-        </section>
-    </div>
+            @*<div class="form-group">
+                <div id="ck-button">
+                    <label asp-for="Input.SelectedRole">
+                        <input value="Supplier" type="checkbox" id="ck-button" class="SupSwitch" onclick="check(this); "> <span>Supplier</span>
+                    </label>
+                    <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
+                </div>
+                <div id="ck-button">
+                    <label asp-for="Input.SelectedRole">
+                        <input value="Contributor" type="checkbox" id="ck-button" class="ConSwitch" onclick="check(this);"> <span>Contributor</span>
+                    </label>
+                    <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </div>*@
+        </form>
+    </section>
+</div>
+
+@*<script>
+    function check(input) {
+        var checkboxes = document.getElementsById("ck-button");
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked == true) {
+                checkboxes[i].checked = false;
+            }
+        }
+        if (input.checked == true) {
+            input.checked = false;
+        }
+        else {
+            input.checked = true;
+        }
+
+        FilterShow();
+    }
+    function FilterShow() {
+
+        var checkBox = document.getElementByClassName("ConSwitch");
+        var filter1 = document.getElementById("filterRegister")
+        var filter2 = document.getElementById("filterRegister")
+
+        if (checkBox.checked == true) {
+            filter1.style.display = "block";
+            filter2.style.display = "block";
+        } else {
+            filter1.style.display = "none";
+            filter2.style.display = "none";
+        }
+    }
+</script>*@
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
