@@ -57,66 +57,51 @@
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                    <label asp-for="Input.SelectedRole"></label>
-                    <select asp-for="Input.SelectedRole">
-                        <option value="Contributor">Contributor</option>
-                        <option value="Supplier">Supplier</option>
-                    </select>
-                    <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
-
+                <label asp-for="Input.SelectedRole"></label>
+                <select asp-for="Input.SelectedRole">
+                    <option value="Contributor">Contributor</option>
+                    <option value="Supplier">Supplier</option>
+                </select>
+                <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
                 </div>
-            @*<div class="form-group">
-                <div id="ck-button">
-                    <label asp-for="Input.SelectedRole">
-                        <input value="Supplier" type="checkbox" id="ck-button" class="SupSwitch" onclick="check(this); "> <span>Supplier</span>
-                    </label>
-                    <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
-                </div>
-                <div id="ck-button">
-                    <label asp-for="Input.SelectedRole">
-                        <input value="Contributor" type="checkbox" id="ck-button" class="ConSwitch" onclick="check(this);"> <span>Contributor</span>
-                    </label>
-                    <span asp-validation-for="Input.SelectedRole" class="text-danger"></span>
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </div>
-            </div>*@
+                <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </section>
 </div>
 
 @*<script>
-    function check(input) {
-        var checkboxes = document.getElementsById("ck-button");
+        function check(input) {
+            var checkboxes = document.getElementsById("ck-button");
 
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked == true) {
-                checkboxes[i].checked = false;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked == true) {
+                    checkboxes[i].checked = false;
+                }
+            }
+            if (input.checked == true) {
+                input.checked = false;
+            }
+            else {
+                input.checked = true;
+            }
+
+            FilterShow();
+        }
+        function FilterShow() {
+
+            var checkBox = document.getElementByClassName("ConSwitch");
+            var filter1 = document.getElementById("filterRegister")
+            var filter2 = document.getElementById("filterRegister")
+
+            if (checkBox.checked == true) {
+                filter1.style.display = "block";
+                filter2.style.display = "block";
+            } else {
+                filter1.style.display = "none";
+                filter2.style.display = "none";
             }
         }
-        if (input.checked == true) {
-            input.checked = false;
-        }
-        else {
-            input.checked = true;
-        }
-
-        FilterShow();
-    }
-    function FilterShow() {
-
-        var checkBox = document.getElementByClassName("ConSwitch");
-        var filter1 = document.getElementById("filterRegister")
-        var filter2 = document.getElementById("filterRegister")
-
-        if (checkBox.checked == true) {
-            filter1.style.display = "block";
-            filter2.style.display = "block";
-        } else {
-            filter1.style.display = "none";
-            filter2.style.display = "none";
-        }
-    }
-</script>*@
+    </script>*@
 
 
 @section Scripts {

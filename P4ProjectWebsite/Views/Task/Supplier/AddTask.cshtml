@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "AddTask";
+}
+
+<h1>AddTask</h1>
+
+<form asp-controller="Task" asp-action="Save" method="post">
+    <label for="Title">Task Title:</label><br>
+    <input type="text" id="Title" name="Title" value="Enter title of the task..."> <br>
+    <label for="Description">Task Description:</label><br>
+    <input type="text" id="Description" name="Description" value="Describe the task in detail..."><br>
+    <label for="Salary">Expected Salary:</label><br>
+    <input type="number" id="Salary" name="Salary" value="How much do you wish to pay for task completion?..."><br><br>
+    <label for="Duration">Expected Duration:</label><br>
+    <input type="number" id="Duration" name="Duration" value="How long is the expected duration of the task? (in hours)..."><br><br>
+    <label for="Location">Location of task:</label><br>
+    <input type="text" id="Location" name="Location" value="Enter Location..."><br><br>
+    <input type="submit" id="SubmitButton1" value="Create Task" />
+</form>
