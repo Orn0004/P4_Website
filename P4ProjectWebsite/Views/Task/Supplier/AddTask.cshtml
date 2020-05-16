@@ -3,18 +3,40 @@
     ViewData["Title"] = "AddTask";
 }
 
-<h1>AddTask</h1>
+<h1>Create a task</h1>
 
+<div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
 <form asp-controller="Task" asp-action="Save" method="post">
     <label for="Title">Task Title:</label><br>
-    <input type="text" id="Title" name="Title" value="Enter title of the task..."> <br>
+    <input type="text" id="Title" name="Title" placeholder="Write a short description of what your task"> <br>
     <label for="Description">Task Description:</label><br>
-    <input type="text" id="Description" name="Description" value="Describe the task in detail..."><br>
-    <label for="Salary">Expected Salary:</label><br>
-    <input type="number" id="Salary" name="Salary" value="How much do you wish to pay for task completion?..."><br><br>
-    <label for="Duration">Expected Duration:</label><br>
-    <input type="number" id="Duration" name="Duration" value="How long is the expected duration of the task? (in hours)..."><br><br>
+    <input type="text" id="Description" name="Description" placeholder="Describe the task in detail e.g length, height and amount of work that needs to get done."><br>
+    <label for="Salary">Estimated hourly salary:</label><br>
+    <input type="number" id="Salary" name="Salary" placeholder="Work pay per hour"> DKK <br><br>
+    <label for="Duration">Estimated Work Duration:</label><br>
+    <input type="number" id="Duration" name="Duration" placeholder="Amount of work hours required"> Hours<br><br>
     <label for="Location">Location of task:</label><br>
-    <input type="text" id="Location" name="Location" value="Enter Location..."><br><br>
+    <input type="text" id="Location" name="Location" placeholder="City, Zipcode, Country"><br><br>
+    <div class="form-group">
+        <label> Category </label>
+        <select>
+            <option value="HouseKeeping">Housekeeping</option>
+            <option value="Garden">Garden</option>
+            <option value="Misc">Miscellaneous</option>
+        </select>
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label> UnderCategory </label>
+        <select>
+            <option value="HouseKeeping">Housekeeping</option>
+            <option value="Garden">Garden</option>
+            <option value="Misc">Miscellaneous</option>
+        </select>
+        <span class="text-danger"></span>
+    </div>
     <input type="submit" id="SubmitButton1" value="Create Task" />
 </form>
+

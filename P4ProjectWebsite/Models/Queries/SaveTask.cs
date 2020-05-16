@@ -16,7 +16,7 @@ namespace P4ProjectWebsite.Models.Queries
         }
 
 
-        public void Insert(TaskEntity task)
+        public void InsertRelation(TaskEntity task)
         {
             // connects to the database.
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
@@ -42,7 +42,7 @@ namespace P4ProjectWebsite.Models.Queries
                 }
             }
         }
-        public void Relation(RelationTaskAddEntity relation)
+        public void InsertRelation(RelationTaskAddEntity relation)
         {
             // connects to the database.
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
