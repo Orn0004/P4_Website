@@ -4,13 +4,13 @@ using System.Text;
 
 namespace P4ProjectWebsite.Models
 {
-    public class Tasks
+    public class TaskEntity
     {
         public string Title { get; set; }
         public string Description { get; set; }
         public int Salary { get; set; }
         public int Duration { get; set; }
-        public int Id { get; }
+        public int Id { get; set; }
         public string Location { get; set; }
     }
 }

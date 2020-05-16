@@ -16,7 +16,7 @@ namespace P4ProjectWebsite.Models.Queries
         }
 
 
-        public void Insert(Tasks task)
+        public void Insert(TaskEntity task)
         {
             // connects to the database.
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
@@ -32,6 +32,34 @@ namespace P4ProjectWebsite.Models.Queries
                     command.Parameters.AddWithValue("@Duration", task.Duration);
                     command.Parameters.AddWithValue("@Location", task.Location);
 
+                    cnn.Open();
+                    int result = command.ExecuteNonQuery();
+                    cnn.Close();
+
+                    // Check Error
+                    if (result < 0)
+                        Console.WriteLine("Error inserting data into Database!");
+                }
+            }
+        }
+        public void Relation(RelationTaskAddEntity relation)
+        {
+            // connects to the database.
+            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            {
+                int id;
+                string findidq = "SELECT MAX(Id) FROM Tasks";
+                string addrelationq = "INSERT INTO TaskUserClaims ([User-id], [Task-id]) VALUES (@Userid, @Taskid)";
+                using (SqlCommand com = new SqlCommand(findidq, cnn))
+                {
+                    cnn.Open();
+                    id = (int)com.ExecuteScalar();
+                    cnn.Close();
+                }
+                using (SqlCommand command = new SqlCommand(addrelationq, cnn))
+                {
+                    command.Parameters.AddWithValue("@Userid", relation.Userid);
+                    command.Parameters.AddWithValue("@Taskid", id);
                     cnn.Open();
                     int result = command.ExecuteNonQuery();
                     cnn.Close();

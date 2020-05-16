@@ -33,19 +33,23 @@ namespace P4ProjectWebsite.Controllers.Supplier
         }
         public IActionResult Save()
         {
-            //var userId = User.Identity.GetUserId();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var b = new Tasks
+            var b = new TaskEntity
             {
                 Title = HttpContext.Request.Form["Title"],
                 Description = HttpContext.Request.Form["Description"],
                 Salary = int.Parse(HttpContext.Request.Form["Salary"]),
                 Location = HttpContext.Request.Form["Location"],
-                Duration = int.Parse(HttpContext.Request.Form["Duration"])
+                Duration = int.Parse(HttpContext.Request.Form["Duration"]),
+            };
+            var a = new RelationTaskAddEntity
+            {
+                Userid = userId
             };
             var q = new SaveTask(_configuration);
-
+            
             q.Insert(b);
+            q.Relation(a);
             return RedirectToAction("Index");
         }
     }
