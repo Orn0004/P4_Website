@@ -1,9 +1,18 @@
-﻿
+﻿<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $('#CategorySelect').change(function () {
+            $('.categories').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
 @{
     ViewData["Title"] = "AddTask";
 }
-
 <h1>Create a task</h1>
+
+
 
 <div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -21,22 +30,60 @@
     <input type="text" id="Location" name="Location" placeholder="City, Zipcode, Country"><br><br>
     <div class="form-group">
         <label> Category </label>
-        <select>
-            <option value="HouseKeeping">Housekeeping</option>
+        <select id="CategorySelect">
+            <option> Choose a Category... </option>
+            <option value="Housekeeping">Housekeeping</option>
             <option value="Garden">Garden</option>
             <option value="Misc">Miscellaneous</option>
         </select>
         <span class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label> UnderCategory </label>
-        <select>
-            <option value="HouseKeeping">Housekeeping</option>
-            <option value="Garden">Garden</option>
-            <option value="Misc">Miscellaneous</option>
+    @* HouseKeeping selected *@
+    <div id="Housekeeping" class="categories" style="display:none">
+        <label> Housekeeping categories </label>
+        <select id="HouseKeepingSelect">
+            <option> Choose a taskcategory... </option>
+            <option> Cleaning </option>
+            <option> Plumbing</option>
+            <option> Painting </option>
+            <option> Mason </option>
+            <option> Carpentry and woodworking </option>
+            <option> Electrician </option>
+            <option> Handyman </option>
+            <option> Architecht and engineer </option>
+            <option> Window cleaning </option>
         </select>
-        <span class="text-danger"></span>
     </div>
+    @* Garden selected *@
+    <div id="Garden" class="categories" style="display:none">
+        <label> Garden categories </label>
+        <select id="HouseKeepingSelect">
+            <option> Choose a taskcategory... </option>
+            <option>Lawnmowing</option>
+            <option>Planting in garden</option>
+            <option>Planting in terrace</option>
+            <option>Hedge trimming</option>
+            <option>Tree cutting</option>
+            <option>Pruning</option>
+            <option>Other gardening</option>
+        </select>
+    </div>
+    @* Miscellaneous selected *@
+    <div id="Misc" class="categories" style="display:none">
+        <label> Miscellaneous categories </label>
+        <select id="HouseKeepingSelect">
+            <option> Choose a taskcategory... </option>
+            <option>Childcare</option>
+            <option> Dogcare </option>
+            <option>Garden</option>
+            <option>Waitress or other event aid</option>
+            <option>Homework helper</option>
+            <option>Tech helper (mobile, pc, tv)</option>
+            <option> Repair/Provisioning of bikes, cars and boats </option>
+            <option> Other </option>
+        </select>
+    </div>
+
     <input type="submit" id="SubmitButton1" value="Create Task" />
 </form>
 

@@ -16,7 +16,7 @@ namespace P4ProjectWebsite.Models.Queries
         }
 
 
-        public void InsertRelation(TaskEntity task)
+        public void InsertTask(TaskEntity task)
         {
             // connects to the database.
             using (SqlConnection cnn = new SqlConnection(ConnectionString))

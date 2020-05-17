@@ -10,7 +10,10 @@ namespace P4ProjectWebsite.Models
         public string Description { get; set; }
         public int Salary { get; set; }
         public int Duration { get; set; }
-        public int Id { get; set; }
+        public int Id { get; }
         public string Location { get; set; }
+        public string Category { get; set; }
+
+
     }
 }

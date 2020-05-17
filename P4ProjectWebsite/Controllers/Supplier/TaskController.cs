@@ -48,7 +48,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
             };
             var q = new SaveTask(_configuration);
             
-            q.InsertRelation(b);
+            q.InsertTask(b);
             q.InsertRelation(a);
             return RedirectToAction("Index");
         }
