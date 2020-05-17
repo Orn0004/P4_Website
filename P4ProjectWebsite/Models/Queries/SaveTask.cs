@@ -31,6 +31,7 @@ namespace P4ProjectWebsite.Models.Queries
                     command.Parameters.AddWithValue("@Salary", task.Salary);
                     command.Parameters.AddWithValue("@Duration", task.Duration);
                     command.Parameters.AddWithValue("@Location", task.Location);
+                    command.Parameters.AddWithValue("@Category", task.Category);
 
                     cnn.Open();
                     int result = command.ExecuteNonQuery();

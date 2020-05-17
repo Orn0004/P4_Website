@@ -69,40 +69,6 @@
     </section>
 </div>
 
-@*<script>
-        function check(input) {
-            var checkboxes = document.getElementsById("ck-button");
-
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked == true) {
-                    checkboxes[i].checked = false;
-                }
-            }
-            if (input.checked == true) {
-                input.checked = false;
-            }
-            else {
-                input.checked = true;
-            }
-
-            FilterShow();
-        }
-        function FilterShow() {
-
-            var checkBox = document.getElementByClassName("ConSwitch");
-            var filter1 = document.getElementById("filterRegister")
-            var filter2 = document.getElementById("filterRegister")
-
-            if (checkBox.checked == true) {
-                filter1.style.display = "block";
-                filter2.style.display = "block";
-            } else {
-                filter1.style.display = "none";
-                filter2.style.display = "none";
-            }
-        }
-    </script>*@
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

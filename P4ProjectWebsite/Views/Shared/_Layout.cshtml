@@ -30,12 +30,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Form" asp-action="OpenJobs">Available Jobs</a>
                         </li>
-                        @if ((await AuthorizationService.AuthorizeAsync(User, "AdminAccess")).Succeeded)
-                        {
+                        @*@if ((await AuthorizationService.AuthorizeAsync(User, "AdminAccess")).Succeeded)
+                        {*@
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="RoleIndex">Rolls</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="RoleIndex">Roles</a>
                             </li>
-                        }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Create Category</a>
+                            </li>
+                        @*}*@
                         @if ((await AuthorizationService.AuthorizeAsync(User, "SupplierAccess")).Succeeded)
                         {
                             <li class="nav-item">

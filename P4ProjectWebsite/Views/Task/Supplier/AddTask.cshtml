@@ -1,12 +1,4 @@
-﻿<script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
-    $(function () {
-        $('#CategorySelect').change(function () {
-            $('.categories').hide();
-            $('#' + $(this).val()).show();
-        });
-    });
-</script>
+﻿@model TaskEntity
 @{
     ViewData["Title"] = "AddTask";
 }
@@ -40,11 +32,11 @@
     </div>
     @* HouseKeeping selected *@
     <div id="Housekeeping" class="categories" style="display:none">
-        <label> Housekeeping categories </label>
-        <select id="HouseKeepingSelect">
+        <label for="Category"> Housekeeping categories </label>
+        <select for="Category">
             <option> Choose a taskcategory... </option>
-            <option> Cleaning </option>
-            <option> Plumbing</option>
+            <option value="Cleaning"> Cleaning </option>
+            <option value="Plumbing"> Plumbing</option>
             <option> Painting </option>
             <option> Mason </option>
             <option> Carpentry and woodworking </option>
@@ -56,8 +48,8 @@
     </div>
     @* Garden selected *@
     <div id="Garden" class="categories" style="display:none">
-        <label> Garden categories </label>
-        <select id="HouseKeepingSelect">
+        <label for="Category"> Garden categories </label>
+        <select for="Category">
             <option> Choose a taskcategory... </option>
             <option>Lawnmowing</option>
             <option>Planting in garden</option>
@@ -70,11 +62,11 @@
     </div>
     @* Miscellaneous selected *@
     <div id="Misc" class="categories" style="display:none">
-        <label> Miscellaneous categories </label>
-        <select id="HouseKeepingSelect">
-            <option> Choose a taskcategory... </option>
+        <label for="Category"> Miscellaneous categories </label>
+        <select for="Category">
+            <option>Choose a taskcategory... </option>
             <option>Childcare</option>
-            <option> Dogcare </option>
+            <option>Dogcare </option>
             <option>Garden</option>
             <option>Waitress or other event aid</option>
             <option>Homework helper</option>
@@ -86,4 +78,14 @@
 
     <input type="submit" id="SubmitButton1" value="Create Task" />
 </form>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $('#CategorySelect').change(function () {
+            $('.categories').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>
 

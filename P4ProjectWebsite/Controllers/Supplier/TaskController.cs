@@ -41,6 +41,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
                 Salary = int.Parse(HttpContext.Request.Form["Salary"]),
                 Location = HttpContext.Request.Form["Location"],
                 Duration = int.Parse(HttpContext.Request.Form["Duration"]),
+                Category = HttpContext.Request.Form["Category"]
             };
             var a = new RelationTaskAddEntity
             {
