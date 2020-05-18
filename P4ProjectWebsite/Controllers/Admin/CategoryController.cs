@@ -18,7 +18,7 @@ namespace P4ProjectWebsite.Controllers.Admin
         }
         public IActionResult Index()
         {
-            ShowCategories();
+           
             return View("../Category/AddCategory");
         }
 

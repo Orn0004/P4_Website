@@ -27,7 +27,7 @@ namespace P4ProjectWebsite.Models.Queries
                 {
                     cnn.Open();
 
-                    string query = "SELECT Name, Type FROM TaskCategories";
+                    string query = "SELECT Name, Type FROM TaskCategories ORDER BY Type";
                     using (SqlCommand command = new SqlCommand(query, cnn))
                     {
                         //reads the table.

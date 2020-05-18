@@ -3,7 +3,7 @@
     ViewData["Title"] = "ShowCategories";
 }
 
-<h1>ShowCategories</h1>
+<h1>Current categories</h1>
 
 <table>
     <thead>
@@ -37,3 +37,15 @@
             padding: 2px;
         }
     </style>
+
+
+    <input type="button" value="Add category" onclick="openpopup()">
+
+
+
+    <script>
+        function openpopup()
+        {
+          window.open("@Url.Action( "Index", "Category")","Categories","[width=100,height=200,scrollbars=no,resizable=no]")
+        }
+    </script>

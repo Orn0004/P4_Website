@@ -3,7 +3,7 @@
     ViewData["Title"] = "AddCategory";
 }
 
-<h1>Add Category to</h1>
+<h1>Add Category</h1>
 
 <form asp-controller="Category" asp-action="Save" method="post">
     <label asp-for="Name">Name of Category</label>
@@ -17,4 +17,10 @@
     <input type="submit" id="SubmitButton1" value="Add Category" />
 </form>
 
-<partial name="../Category/ShowCategories" />
+
+<script>
+    window.onunload = function () {
+        window.opener.location.href = window.opener.location;
+        close();
+    }   
+</script>
