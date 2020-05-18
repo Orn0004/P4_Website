@@ -28,7 +28,7 @@
                 <td>@row.Type</td>
 
                 <td>
-                    <a asp-controller="Category" asp-action="Delete" asp-route-name="@row.Name" onclick="AreYouSure('@row.Name')">Delete</a>
+                    <a asp-controller="Category" asp-action="Delete" asp-route-name="@row.Name" onclick="return confirm('Are you sure you want to delete the Category: @row.Name (@row.Type)?')">Delete</a>
                 </td>
             </tr>
 
@@ -50,16 +50,6 @@
 
 
     <script>
-        function AreYouSure(category) {
-            if (confirm('Are you sure you want to delete ' + category + '?')) {
-                // Save it!
-                window.alert('Category deleted');
-                window.open(@Url.Action("Delete", "Category"), new { name = category})
-            } else {
-                // Do nothing!
-                window.alert('Category was not deleted.');
-            }
-        }
         function openpopup()
         {
           window.open("@Url.Action( "Index", "Category")","Categories","[width=100,height=200,scrollbars=no,resizable=no]")
