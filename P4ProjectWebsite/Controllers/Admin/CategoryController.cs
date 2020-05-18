@@ -32,7 +32,7 @@ namespace P4ProjectWebsite.Controllers.Admin
             var q = new DeleteCategory(_configuration);
 
             q.RemoveCategory(name);
-            return RedirectToAction("Index");
+            return RedirectToAction("ShowCategories");
         }
         public IActionResult Save()
         {
