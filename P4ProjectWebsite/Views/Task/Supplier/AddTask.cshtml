@@ -35,31 +35,27 @@
         <label for="Category"> Housekeeping categories </label>
         <select for="Category">
             <option> Choose a taskcategory... </option>
-            @if (Model == null)
+            @{var QueryHousekeeping = from Type in Model
+                             where Type.Type == "Housekeeping"
+                           select Type; }
+            @foreach (var row in QueryHousekeeping)
             {
-                <option>no items found</option>
+                <option value="@row.Name"> @row.Name </option>
             }
-            else
-            {
-                @foreach (var row in Model)
-                {
-                    <option value="@row.Name"> @row.Name </option>
-                }
-            }
-            </select>
+        </select>
     </div>
     @* Garden selected *@
     <div id="Garden" class="categories" style="display:none">
         <label for="Category"> Garden categories </label>
         <select for="Category">
             <option> Choose a taskcategory... </option>
-            <option>Lawnmowing</option>
-            <option>Planting in garden</option>
-            <option>Planting in terrace</option>
-            <option>Hedge trimming</option>
-            <option>Tree cutting</option>
-            <option>Pruning</option>
-            <option>Other gardening</option>
+            @{var QueryGarden = from Type in Model
+                                        where Type.Type == "Garden"
+                                        select Type; }
+            @foreach (var row in QueryGarden)
+            {
+                <option value="@row.Name"> @row.Name </option>
+            }
         </select>
     </div>
     @* Miscellaneous selected *@
@@ -67,14 +63,13 @@
         <label for="Category"> Miscellaneous categories </label>
         <select for="Category">
             <option>Choose a taskcategory... </option>
-            <option>Childcare</option>
-            <option>Dogcare </option>
-            <option>Garden</option>
-            <option>Waitress or other event aid</option>
-            <option>Homework helper</option>
-            <option>Tech helper (mobile, pc, tv)</option>
-            <option> Repair/Provisioning of bikes, cars and boats </option>
-            <option> Other </option>
+            @{var QueryMisc = from Type in Model
+                                  where Type.Type == "Misc"
+                                  select Type; }
+            @foreach (var row in QueryMisc)
+            {
+                <option value="@row.Name"> @row.Name </option>
+            }
         </select>
     </div>
 

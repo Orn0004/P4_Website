@@ -18,7 +18,6 @@ namespace P4ProjectWebsite.Controllers.Admin
         }
         public IActionResult Index()
         {
-           
             return View("../Category/AddCategory");
         }
 
@@ -26,6 +25,14 @@ namespace P4ProjectWebsite.Controllers.Admin
         {
             var q = new GetCategories(_configuration);
             return View(q.GetList());
+        }
+        [HttpGet]
+        public IActionResult Delete(string name)
+        {
+            var q = new DeleteCategory(_configuration);
+
+            q.RemoveCategory(name);
+            return RedirectToAction("Index");
         }
         public IActionResult Save()
         {

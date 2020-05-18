@@ -25,14 +25,16 @@ namespace P4ProjectWebsite.Controllers.Supplier
             _userManager = userManager;
 
         }
-
-
+        
         public IActionResult Index()
         {
-            return View("Supplier/AddTask");
+            var g = new GetCategories(_configuration);
+            var CategoryList = g.GetList();
+            return View("Supplier/AddTask" , CategoryList);
         }
         public IActionResult Save()
         {
+ 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var b = new TaskEntity
             {

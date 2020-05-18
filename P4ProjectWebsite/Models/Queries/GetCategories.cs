@@ -14,6 +14,7 @@ namespace P4ProjectWebsite.Models.Queries
         {
             ConnectionString = configuration.GetConnectionString("P4Database");
         }
+
         public List<CategoryEntity> GetList()
         {
             // variable creation
@@ -27,7 +28,7 @@ namespace P4ProjectWebsite.Models.Queries
                 {
                     cnn.Open();
 
-                    string query = "SELECT Name, Type FROM TaskCategories ORDER BY Type";
+                    string query = $"SELECT Name, Type FROM TaskCategories ORDER BY Type";
                     using (SqlCommand command = new SqlCommand(query, cnn))
                     {
                         //reads the table.
@@ -60,4 +61,5 @@ namespace P4ProjectWebsite.Models.Queries
         }
     }
 }
+
 
