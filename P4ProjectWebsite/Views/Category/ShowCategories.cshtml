@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CategoryEntity>
+@{
+    ViewData["Title"] = "ShowCategories";
+}
+
+<h1>ShowCategories</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null)
+        {
+        <td> no items </td>
+        <td> no items </td>
+    }
+    else
+    {
+        @foreach (var row in Model)
+        {
+            <tr>
+                <td>@row.Name</td>
+                <td>@row.Type</td>
+            </tr>
+        }
+    }
+        </tbody>
+    </table>
+    <style>
+        table, th, td {
+            border: solid 1px #bbbbbb;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+    </style>

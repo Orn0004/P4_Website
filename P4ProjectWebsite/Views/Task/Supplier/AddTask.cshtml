@@ -1,4 +1,4 @@
-﻿@model TaskEntity
+﻿@model IEnumerable<CategoryEntity>
 @{
     ViewData["Title"] = "AddTask";
 }
@@ -35,16 +35,18 @@
         <label for="Category"> Housekeeping categories </label>
         <select for="Category">
             <option> Choose a taskcategory... </option>
-            <option value="Cleaning"> Cleaning </option>
-            <option value="Plumbing"> Plumbing</option>
-            <option> Painting </option>
-            <option> Mason </option>
-            <option> Carpentry and woodworking </option>
-            <option> Electrician </option>
-            <option> Handyman </option>
-            <option> Architecht and engineer </option>
-            <option> Window cleaning </option>
-        </select>
+            @if (Model == null)
+            {
+                <option>no items found</option>
+            }
+            else
+            {
+                @foreach (var row in Model)
+                {
+                    <option value="@row.Name"> @row.Name </option>
+                }
+            }
+            </select>
     </div>
     @* Garden selected *@
     <div id="Garden" class="categories" style="display:none">

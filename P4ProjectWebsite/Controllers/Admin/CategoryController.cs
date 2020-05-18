@@ -18,9 +18,15 @@ namespace P4ProjectWebsite.Controllers.Admin
         }
         public IActionResult Index()
         {
-            return View("../Task/Admin/AddCategory");
+            ShowCategories();
+            return View("../Category/AddCategory");
         }
 
+        public IActionResult ShowCategories()
+        {
+            var q = new GetCategories(_configuration);
+            return View(q.GetList());
+        }
         public IActionResult Save()
         {
             var b = new CategoryEntity
