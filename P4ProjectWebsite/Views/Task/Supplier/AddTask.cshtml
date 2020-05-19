@@ -33,8 +33,8 @@
     @* HouseKeeping selected *@
     <div id="Housekeeping" class="categories" style="display:none">
         <label for="Category"> Housekeeping categories </label>
-        <select for="Category">
-            <option> Choose a taskcategory... </option>
+        <select id="Category" name="Category">
+           
             @{var QueryHousekeeping = from Type in Model
                              where Type.Type == "Housekeeping"
                            select Type; }
@@ -44,28 +44,28 @@
             }
         </select>
     </div>
-    @* Garden selected *@
+     Garden selected 
     <div id="Garden" class="categories" style="display:none">
         <label for="Category"> Garden categories </label>
-        <select for="Category">
-            <option> Choose a taskcategory... </option>
+        <select id="Category" name="Category">
+           
             @{var QueryGarden = from Type in Model
-                                        where Type.Type == "Garden"
-                                        select Type; }
+                                  where Type.Type == "Garden"
+                                  select Type; }
             @foreach (var row in QueryGarden)
             {
                 <option value="@row.Name"> @row.Name </option>
             }
         </select>
     </div>
-    @* Miscellaneous selected *@
+     Miscellaneous selected 
     <div id="Misc" class="categories" style="display:none">
         <label for="Category"> Miscellaneous categories </label>
-        <select for="Category">
-            <option>Choose a taskcategory... </option>
+        <select id="Category" name="Category">
+            
             @{var QueryMisc = from Type in Model
-                                  where Type.Type == "Misc"
-                                  select Type; }
+                                where Type.Type == "Misc"
+                                select Type; }
             @foreach (var row in QueryMisc)
             {
                 <option value="@row.Name"> @row.Name </option>

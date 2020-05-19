@@ -11,6 +11,7 @@ using P4ProjectWebsite.Models.Queries;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Principal;
 using System.Security.Claims;
+using P4ProjectWebsite.Models.Queries;
 
 namespace P4ProjectWebsite.Controllers.Supplier
 {
@@ -43,13 +44,16 @@ namespace P4ProjectWebsite.Controllers.Supplier
                 Salary = int.Parse(HttpContext.Request.Form["Salary"]),
                 Location = HttpContext.Request.Form["Location"],
                 Duration = int.Parse(HttpContext.Request.Form["Duration"]),
-                Category = HttpContext.Request.Form["Category"]
-            };
-            var a = new RelationTaskAddEntity
-            {
-                Userid = userId
+                Category = Request.Form["Category"]
             };
             var q = new SaveTask(_configuration);
+            //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
+            var a = new RelationTaskAddEntity
+            {
+                Userid = userId,
+                //Categoryid = CategoryId
+            };
+            
             
             q.InsertTask(b);
             q.InsertRelation(a);

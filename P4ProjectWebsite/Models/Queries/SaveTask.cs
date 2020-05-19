@@ -15,6 +15,22 @@ namespace P4ProjectWebsite.Models.Queries
             ConnectionString = configuration.GetConnectionString("P4Database");
         }
 
+        //public int FindCategoryId(string CategoryName)
+        //{
+        //    using (SqlConnection cnn = new SqlConnection(ConnectionString))
+        //    {
+        //        string query = $"Select Id FROM TaskCategories Where Name = '{CategoryName}'";
+
+        //        using (SqlCommand command = new SqlCommand(query, cnn))
+        //        {
+        //            cnn.Open();
+        //            int result = command.ExecuteNonQuery();
+        //            cnn.Close();
+
+        //            return result;
+        //        }
+        //    }
+        //}
 
         public void InsertTask(TaskEntity task)
         {
@@ -22,7 +38,7 @@ namespace P4ProjectWebsite.Models.Queries
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 // create a variable with the query command
-                string query = "INSERT INTO Tasks (Title,Description,Salary,Duration,Location) VALUES (@Title,@Description,@Salary,@Duration,@Location)";
+                string query = "INSERT INTO Tasks (Title,Description,Salary,Duration,Location,Category) VALUES (@Title,@Description,@Salary,@Duration,@Location, @Category)";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
@@ -61,6 +77,7 @@ namespace P4ProjectWebsite.Models.Queries
                 {
                     command.Parameters.AddWithValue("@Userid", relation.Userid);
                     command.Parameters.AddWithValue("@Taskid", id);
+
                     cnn.Open();
                     int result = command.ExecuteNonQuery();
                     cnn.Close();

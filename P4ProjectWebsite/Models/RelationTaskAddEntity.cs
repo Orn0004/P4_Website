@@ -9,5 +9,7 @@ namespace P4ProjectWebsite.Models
     {
         public string Userid { get; set; }
         public int Taskid { get; set; }
+
+        public int Categoryid { get; set; }
     }
 }
