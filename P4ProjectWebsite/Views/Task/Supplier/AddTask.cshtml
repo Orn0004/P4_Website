@@ -2,6 +2,16 @@
 @{
     ViewData["Title"] = "AddTask";
 }
+@{var QueryHousekeeping = from Type in Model
+                            where Type.Type == "Housekeeping"
+                            select Type; }
+@{var QueryGarden = from Type in Model
+                      where Type.Type == "Garden"
+                      select Type; }
+@{var QueryMisc = from Type in Model
+                    where Type.Type == "Misc"
+                    select Type; }
+
 <h1>Create a task</h1>
 
 
@@ -11,78 +21,43 @@
 </div>
 <form asp-controller="Task" asp-action="Save" method="post">
     <label for="Title">Task Title:</label><br>
-    <input type="text" id="Title" name="Title" placeholder="Write a short description of what your task"> <br>
+    <input type="text" id="Title" name="Title" placeholder="Write a short description of what your task"required> <br>
     <label for="Description">Task Description:</label><br>
-    <input type="text" id="Description" name="Description" placeholder="Describe the task in detail e.g length, height and amount of work that needs to get done."><br>
+    <input type="text" id="Description" name="Description" placeholder="Describe the task in detail e.g length, height and amount of work that needs to get done."required><br>
     <label for="Salary">Estimated hourly salary:</label><br>
-    <input type="number" id="Salary" name="Salary" placeholder="Work pay per hour"> DKK <br><br>
+    <input type="number" id="Salary" name="Salary" placeholder="Work pay per hour"required> DKK <br><br>
     <label for="Duration">Estimated Work Duration:</label><br>
-    <input type="number" id="Duration" name="Duration" placeholder="Amount of work hours required"> Hours<br><br>
+    <input type="number" id="Duration" name="Duration" placeholder="Amount of work hours required" required> Hours<br><br>
     <label for="Location">Location of task:</label><br>
-    <input type="text" id="Location" name="Location" placeholder="City, Zipcode, Country"><br><br>
-    <div class="form-group">
-        <label> Category </label>
-        <select id="CategorySelect">
-            <option> Choose a Category... </option>
-            <option value="Housekeeping">Housekeeping</option>
-            <option value="Garden">Garden</option>
-            <option value="Misc">Miscellaneous</option>
-        </select>
-        <span class="text-danger"></span>
-    </div>
-    @* HouseKeeping selected *@
-    <div id="Housekeeping" class="categories" style="display:none">
-        <label for="Category"> Housekeeping categories </label>
+    <input type="text" id="Location" name="Location" placeholder="City, Zipcode, Country"required> <br><br>
+
+    <div id="CategoryContainer">
+        <label for="Category"> Task Category: </label>
         <select id="Category" name="Category">
-           
-            @{var QueryHousekeeping = from Type in Model
-                             where Type.Type == "Housekeeping"
-                           select Type; }
-            @foreach (var row in QueryHousekeeping)
-            {
-                <option value="@row.Name"> @row.Name </option>
-            }
+            <option disabled>Choose a category your task fits best in...</option>
+            <optgroup label="Housekeeping">
+                @foreach (var row in QueryHousekeeping)
+                {
+                    <option value="@row.Name"> @row.Name </option>
+                }
+            </optgroup>
+            <optgroup label="Garden">
+                @foreach (var row in QueryGarden)
+                {
+                    <option value="@row.Name"> @row.Name </option>
+                }
+            </optgroup>
+            <optgroup label="Miscellaneous">
+                @foreach (var row in QueryMisc)
+                {
+                    <option value="@row.Name"> @row.Name </option>
+                }
+            </optgroup>
         </select>
     </div>
-     Garden selected 
-    <div id="Garden" class="categories" style="display:none">
-        <label for="Category"> Garden categories </label>
-        <select id="Category" name="Category">
-           
-            @{var QueryGarden = from Type in Model
-                                  where Type.Type == "Garden"
-                                  select Type; }
-            @foreach (var row in QueryGarden)
-            {
-                <option value="@row.Name"> @row.Name </option>
-            }
-        </select>
-    </div>
-     Miscellaneous selected 
-    <div id="Misc" class="categories" style="display:none">
-        <label for="Category"> Miscellaneous categories </label>
-        <select id="Category" name="Category">
-            
-            @{var QueryMisc = from Type in Model
-                                where Type.Type == "Misc"
-                                select Type; }
-            @foreach (var row in QueryMisc)
-            {
-                <option value="@row.Name"> @row.Name </option>
-            }
-        </select>
-    </div>
+
 
     <input type="submit" id="SubmitButton1" value="Create Task" />
 </form>
 
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
-    $(function () {
-        $('#CategorySelect').change(function () {
-            $('.categories').hide();
-            $('#' + $(this).val()).show();
-        });
-    });
-</script>
 
