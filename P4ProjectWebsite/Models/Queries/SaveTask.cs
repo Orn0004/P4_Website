@@ -40,7 +40,7 @@ namespace P4ProjectWebsite.Models.Queries
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
                     cnn.Open();
-                    var result = command.ExecuteScalar();
+                   string result =(string)command.ExecuteScalar();
                     string username = result;
                     cnn.Close();
 
