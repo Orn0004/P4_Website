@@ -37,7 +37,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
  
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var q = new SaveTask(_configuration);
-            var Username = q.FindUsername(userId); 
+            string Username = q.FindUsername(userId); 
             var b = new TaskEntity
             {
                 Title = HttpContext.Request.Form["Title"],
@@ -55,7 +55,6 @@ namespace P4ProjectWebsite.Controllers.Supplier
                 Userid = userId,
                 //Categoryid = CategoryId
             };
-            
             
             q.InsertTask(b);
             q.InsertRelation(a);

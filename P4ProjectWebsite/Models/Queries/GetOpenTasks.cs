@@ -14,7 +14,30 @@ namespace P4ProjectWebsite.Models.Queries
         {
             ConnectionString = configuration.GetConnectionString("P4Database");
         }
+        public void ReadRow(SqlCommand command, List<TaskEntity> row)
+        {
+            //reads the table.
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                //as it reads single rows it will print it out untill theres no more in the table.
+                while (reader.Read())
+                {
+                    row.Add(new TaskEntity
+                    {
+                        Title = (string)reader[0],
+                        Description = (string)reader[1],
+                        Bid = (int)reader[2],
+                        Duration = (int)reader[3],
+                        Id = (int)reader[4],
+                        Location = (string)reader[5],
+                        Category = (string)reader[6],
+                        CreatedBy = (string)reader[7],
+                        DateCreated = (string)reader[8]
 
+                    });
+                }
+            }
+        }
         public List<TaskEntity> GetList()
         {
             // variable creation
@@ -30,27 +53,7 @@ namespace P4ProjectWebsite.Models.Queries
                 // create a variable with the query command.
                 SqlCommand command = new SqlCommand("SELECT * FROM Tasks ORDER BY ID", cnn);
 
-                //reads the table.
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    //as it reads single rows it will print it out untill theres no more in the table.
-                    while (reader.Read())
-                    {
-                        TaskList.Add(new TaskEntity
-                        {
-                            Title = (string)reader[0],
-                            Description = (string)reader[1],
-                            Bid = (int)reader[2],
-                            Duration = (int)reader[3],
-                            Id = (int)reader[4],
-                            Location = (string)reader[5],
-                            Category = (string)reader[6],
-                            CreatedBy = (string)reader[7],
-                            DateCreated = (string)reader[8]
-                            
-                            });
-                    }
-                }
+                ReadRow(command, TaskList);
             }
             catch (SqlException ex)
             {
@@ -80,24 +83,7 @@ namespace P4ProjectWebsite.Models.Queries
                 SqlCommand command = new SqlCommand($"SELECT * FROM Tasks WHERE Id ='{taskid}'", cnn);
 
                 //reads the table.
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    //as it reads single rows it will print it out untill theres no more in the table.
-                    while (reader.Read())
-                    {
-                        Task.Add(new TaskEntity
-                        {
-                            Title = (string)reader[0],
-                            Description = (string)reader[1],
-                            Bid = (int)reader[2],
-                            Duration = (int)reader[3],
-                            Id = (int)reader[4],
-                            Location = (string)reader[5],
-                            Category = (string)reader[6],
-                            DateCreated = (string)reader[7]
-                        });
-                    }
-                }
+                ReadRow(command, Task);
             }
             catch (SqlException ex)
             {
