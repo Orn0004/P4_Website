@@ -31,14 +31,30 @@ namespace P4ProjectWebsite.Models.Queries
         //        }
         //    }
         //}
+        public string FindUsername(string userid)
+        {
+            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            {
+                string query = $"SELECT Username FROM AspNetUsers WHERE Id = '{userid}'";
 
+                using (SqlCommand command = new SqlCommand(query, cnn))
+                {
+                    cnn.Open();
+                    var result = command.ExecuteScalar();
+                    string username = result;
+                    cnn.Close();
+
+                    return result;
+                }
+            }
+        }
         public void InsertTask(TaskEntity task)
         {
             // connects to the database.
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 // create a variable with the query command
-                string query = "INSERT INTO Tasks (Title,Description,Duration,Bid,Location,Category,DateCreated) VALUES (@Title,@Description,@Duration,@Bid,@Location,@Category,@DateCreated)";
+                string query = "INSERT INTO Tasks (Title,Description,Duration,Bid,Location,Category,CreatedBy,DateCreated) VALUES (@Title,@Description,@Duration,@Bid,@Location,@Category,@CreatedBy,@DateCreated)";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
@@ -48,6 +64,7 @@ namespace P4ProjectWebsite.Models.Queries
                     command.Parameters.AddWithValue("@Bid", task.Bid);
                     command.Parameters.AddWithValue("@Location", task.Location);
                     command.Parameters.AddWithValue("@Category", task.Category);
+                    command.Parameters.AddWithValue("@CreatedBy", task.CreatedBy);
                     command.Parameters.AddWithValue("@DateCreated", task.DateCreated);
 
                     cnn.Open();

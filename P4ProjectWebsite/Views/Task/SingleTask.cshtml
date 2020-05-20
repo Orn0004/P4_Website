@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TaskEntity>
+@{
+    ViewData["Title"] = "SingleTask";
+}
+@foreach (var row in Model)
+{
+
+    <h1>@row.Title</h1>
+    <h2>@row.Category</h2>
+    <h3>Date Created: @row.DateCreated</h3>
+    <div>
+        <p>
+            @row.Description
+        </p>
+        <p>
+            Place: @row.Location
+        </p>
+        @if (@row.Bid == 0)
+        {
+            <p>
+                Current bid: Not yet bid
+            </p>
+        }
+        else
+        {
+            <p>
+                Current bid: @row.Bid DKK by "(Username)"
+            </p>
+        }
+    </div>
+}
+

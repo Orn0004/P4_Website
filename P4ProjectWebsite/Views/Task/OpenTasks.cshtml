@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TaskEntity>
+﻿@model IEnumerable<P4ProjectWebsite.Models.TaskEntity>
 @{
     ViewData["Title"] = "OpenTasks";
 }
@@ -7,6 +7,7 @@
 
 <table>
     <thead>
+
         <tr>
             <th>Title</th>
             <th>Duration</th>
@@ -20,33 +21,32 @@
     <tbody>
         @foreach (var row in Model)
         {
-<tr>
-    <td>@row.Title</td>
-    <td>@row.Duration Hours</td>
-    <td>@row.Location</td>
-    <td>@row.Category</td>
-    @if (@row.Bid == 0)
-    {
-        <td>Not yet bid</td>
-    }
-    else {
-    <td>@row.Bid DKK</td>
-    }
-    <td>@row.DateCreated</td>
+            <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.Id }))'">
+                <td>@row.Title</td>
+                <td>@row.Duration Hours</td>
+                <td>@row.Location</td>
+                <td>@row.Category</td>
+                @if (@row.Bid == 0)
+                {
+                    <td>Not yet bid</td>
+                }
+                else
+                {
+                    <td>@row.Bid DKK</td>
+                }
+                <td>@row.DateCreated</td>
+                <td>@row.CreatedBy</td>
+            </tr>
 
-    @*<td>
-            <a asp-controller="Category" asp-action="Delete" asp-route-name="@row.Name" onclick="return confirm('Are you sure you want to delete the Category: @row.Name (@row.Type)?')">Delete</a>
-        </td>*@
-</tr>
 
         }
-        </tbody>
-    </table>
-    <style>
-        table, th, td {
-            border: solid 1px #bbbbbb;
-            border-collapse: collapse;
-            padding: 2px;
-        }
-    </style>
+    </tbody>
+</table>
+<style>
+    table, th, td {
+        border: solid 1px #bbbbbb;
+        border-collapse: collapse;
+        padding: 2px;
+    }
+</style>
 

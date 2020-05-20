@@ -14,7 +14,7 @@ namespace P4ProjectWebsite.Models
         public string Location { get; set; }
         public string Category { get; set; }
         public string DateCreated { get; set; }
-
+        public string CreatedBy { get; set; }
 
     }
 }

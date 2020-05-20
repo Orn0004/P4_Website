@@ -35,7 +35,9 @@ namespace P4ProjectWebsite.Controllers.Supplier
         public IActionResult Save()
         {
  
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var q = new SaveTask(_configuration);
+            var Username = q.FindUsername(userId); 
             var b = new TaskEntity
             {
                 Title = HttpContext.Request.Form["Title"],
@@ -44,9 +46,9 @@ namespace P4ProjectWebsite.Controllers.Supplier
                 Bid = 0,
                 Duration = int.Parse(HttpContext.Request.Form["Duration"]),
                 Category = Request.Form["Category"],
+                CreatedBy = Username,
                 DateCreated = DateTime.Now.ToString()
-        };
-            var q = new SaveTask(_configuration);
+            };
             //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
             var a = new RelationTaskAddEntity
             {

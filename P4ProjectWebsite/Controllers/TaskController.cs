@@ -24,5 +24,10 @@ namespace P4ProjectWebsite.Controllers
             var q = new GetOpenTasks(_configuration);
             return View(q.GetList());
         }
+        public IActionResult SingleTask(int id)
+        {
+            var q = new GetOpenTasks(_configuration);
+            return View(q.GetSingleTask(id));
+        }
     }
 }
