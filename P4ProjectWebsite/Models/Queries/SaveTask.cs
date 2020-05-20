@@ -38,16 +38,17 @@ namespace P4ProjectWebsite.Models.Queries
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 // create a variable with the query command
-                string query = "INSERT INTO Tasks (Title,Description,Salary,Duration,Location,Category) VALUES (@Title,@Description,@Salary,@Duration,@Location, @Category)";
+                string query = "INSERT INTO Tasks (Title,Description,Duration,Bid,Location,Category,DateCreated) VALUES (@Title,@Description,@Duration,@Bid,@Location,@Category,@DateCreated)";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
                     command.Parameters.AddWithValue("@Title", task.Title);
                     command.Parameters.AddWithValue("@Description", task.Description);
-                    command.Parameters.AddWithValue("@Salary", task.Salary);
                     command.Parameters.AddWithValue("@Duration", task.Duration);
+                    command.Parameters.AddWithValue("@Bid", task.Bid);
                     command.Parameters.AddWithValue("@Location", task.Location);
                     command.Parameters.AddWithValue("@Category", task.Category);
+                    command.Parameters.AddWithValue("@DateCreated", task.DateCreated);
 
                     cnn.Open();
                     int result = command.ExecuteNonQuery();

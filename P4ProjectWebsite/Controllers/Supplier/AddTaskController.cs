@@ -11,16 +11,15 @@ using P4ProjectWebsite.Models.Queries;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Principal;
 using System.Security.Claims;
-using P4ProjectWebsite.Models.Queries;
 
 namespace P4ProjectWebsite.Controllers.Supplier
 {
     [Authorize(Policy = "SupplierAccess")]
-    public class TaskController : Controller
+    public class AddTaskController : Controller
     {
         private readonly IConfiguration _configuration;
         private readonly UserManager<IdentityUser> _userManager;
-        public TaskController(IConfiguration configuration, UserManager<IdentityUser> userManager)
+        public AddTaskController(IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             _configuration = configuration;
             _userManager = userManager;
@@ -31,7 +30,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
         {
             var g = new GetCategories(_configuration);
             var CategoryList = g.GetList();
-            return View("Supplier/AddTask" , CategoryList);
+            return View("../Task/Supplier/AddTask" , CategoryList);
         }
         public IActionResult Save()
         {
@@ -41,11 +40,12 @@ namespace P4ProjectWebsite.Controllers.Supplier
             {
                 Title = HttpContext.Request.Form["Title"],
                 Description = HttpContext.Request.Form["Description"],
-                Salary = int.Parse(HttpContext.Request.Form["Salary"]),
                 Location = HttpContext.Request.Form["Location"],
+                Bid = 0,
                 Duration = int.Parse(HttpContext.Request.Form["Duration"]),
-                Category = Request.Form["Category"]
-            };
+                Category = Request.Form["Category"],
+                DateCreated = DateTime.Now.ToString()
+        };
             var q = new SaveTask(_configuration);
             //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
             var a = new RelationTaskAddEntity

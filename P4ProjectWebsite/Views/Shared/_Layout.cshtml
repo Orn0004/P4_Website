@@ -28,7 +28,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Form" asp-action="OpenJobs">Available Jobs</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="OpenTasks">Available Tasks</a>
                         </li>
                         @*@if ((await AuthorizationService.AuthorizeAsync(User, "AdminAccess")).Succeeded)
         {*@
@@ -42,7 +42,7 @@
                         @if ((await AuthorizationService.AuthorizeAsync(User, "SupplierAccess")).Succeeded)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Task" asp-action="Index">Create Task</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="AddTask" asp-action="Index">Create Task</a>
                             </li>
                         }
                     </ul>
