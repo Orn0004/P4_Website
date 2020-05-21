@@ -18,6 +18,8 @@
   <ItemGroup>
     <Compile Remove="Areas\Identity\Pages\Account\Manage\MySignInManager.cs" />
     <Compile Remove="Controllers\RegisterInfoController.cs" />
+    <Compile Remove="Migrations\20200521094517_Bids.cs" />
+    <Compile Remove="Migrations\20200521094517_Bids.Designer.cs" />
     <Compile Remove="Models\UsersRole.cs" />
   </ItemGroup>
 
