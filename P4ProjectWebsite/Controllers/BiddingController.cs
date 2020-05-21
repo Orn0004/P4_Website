@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using P4ProjectWebsite.Models;
 using P4ProjectWebsite.Models.Queries;
+using System.Net.Http;
 
 namespace P4ProjectWebsite.Controllers
 {
@@ -23,29 +25,32 @@ namespace P4ProjectWebsite.Controllers
         }
         public IActionResult Index()
         {
+            var FullUrl = HttpContext.Request.Path();
+            string path = HttpContext.Current.Request.Url.AbsolutePath;
+            var taskId = FullUrl.Split('/').Last();       
 
             return View("../Task/Bidding");
         }
 
-        public IActionResult SendBid()
+        public IActionResult SendBid(int taskId)
         {
+
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var q = new AddBid(_configuration);
             string Supid = q.FindSupId();
             var b = new BidEntity
             {
-
                           
                 Bid = int.Parse(HttpContext.Request.Form["Bid"]),                
                 ContributorId = userId,
-                SupplierId = Supid
+                SupplierId = SupId,
+                TaskId = taskId
                 
             };
             //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
 
 
-            q.InsertTask(b);
-            q.InsertRelation(a);
+            
             return RedirectToAction("Index");
         }
 

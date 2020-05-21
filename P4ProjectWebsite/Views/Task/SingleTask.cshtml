@@ -35,7 +35,7 @@
     <script>
         function openpopup()
         {
-          window.open("@Url.Action( "Index", "Bidding")","Categories","[width=100,height=200,scrollbars=no,resizable=no]")
+          window.open("@Url.Action( "Index", "Bidding", new { taskId = row.Id })","Categories","[width=100,height=200,scrollbars=no,resizable=no]")
         }
     </script>
 }

@@ -45,7 +45,7 @@ namespace P4ProjectWebsite.Models.Queries
         {
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
-                string query = $"SELECT CreatedBy FROM Tasks WHERE Id = '{}'";
+                string query = $"SELECT CreatedBy FROM Tasks WHERE Id = '{TaskId}'";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
