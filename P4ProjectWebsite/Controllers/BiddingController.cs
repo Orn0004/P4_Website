@@ -25,34 +25,34 @@ namespace P4ProjectWebsite.Controllers
         }
         public IActionResult Index()
         {
-            var FullUrl = HttpContext.Request.Path();
-            string path = HttpContext.Current.Request.Url.AbsolutePath;
-            var taskId = FullUrl.Split('/').Last();       
+            //var FullUrl = HttpContext.Request.Path();
+            //string path = HttpContext.Current.Request.Url.AbsolutePath;
+            //var taskId = FullUrl.Split('/').Last();       
 
             return View("../Task/Bidding");
         }
 
-        public IActionResult SendBid(int taskId)
-        {
+        //public IActionResult SendBid(int taskId)
+        //{
 
-            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var q = new AddBid(_configuration);
-            string Supid = q.FindSupId();
-            var b = new BidEntity
-            {
+        //    string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var q = new AddBid(_configuration);
+        //    string Supid = q.FindSupId();
+        //    var b = new BidEntity
+        //    {
                           
-                Bid = int.Parse(HttpContext.Request.Form["Bid"]),                
-                ContributorId = userId,
-                SupplierId = SupId,
-                TaskId = taskId
+        //        Bid = int.Parse(HttpContext.Request.Form["Bid"]),                
+        //        ContributorId = userId,
+        //        SupplierId = SupId,
+        //        TaskId = taskId
                 
-            };
-            //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
+        //    };
+        //    //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
 
 
             
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
 
 

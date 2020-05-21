@@ -2,8 +2,14 @@
 @{
     ViewData["Title"] = "Bidding";
 }
+
+    <form method="get">
+        
+    </form>
+
 <form asp-controller="Bidding" asp-action="SendBid" method="post">
     <label for="Bid">Bid :</label>
     <input type="number" id="quantity" name="Bid">
     <input type="submit" value="Submit" />
 </form>
+

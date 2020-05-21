@@ -41,22 +41,22 @@ namespace P4ProjectWebsite.Models.Queries
                 }
             }
         }
-        public string FindSupId()
-        {
-            using (SqlConnection cnn = new SqlConnection(ConnectionString))
-            {
-                string query = $"SELECT CreatedBy FROM Tasks WHERE Id = '{TaskId}'";
+        //public string FindSupId()
+        //{
+        //    using (SqlConnection cnn = new SqlConnection(ConnectionString))
+        //    {
+        //        string query = $"SELECT CreatedBy FROM Tasks WHERE Id = '{TaskId}'";
 
-                using (SqlCommand command = new SqlCommand(query, cnn))
-                {
-                    cnn.Open();
-                    string result = (string)command.ExecuteScalar();
-                    cnn.Close();
+        //        using (SqlCommand command = new SqlCommand(query, cnn))
+        //        {
+        //            cnn.Open();
+        //            string result = (string)command.ExecuteScalar();
+        //            cnn.Close();
 
-                    return result;
-                }
-            }
-        }
+        //            return result;
+        //        }
+        //    }
+        //}
     }
 }
 
