@@ -12,7 +12,7 @@ using P4ProjectWebsite.Roles;
 
 namespace P4ProjectWebsite.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Policy = "AdminAccess")]
     public class RoleController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;

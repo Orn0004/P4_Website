@@ -24,35 +24,34 @@ namespace P4ProjectWebsite.Controllers
 
         }
         public IActionResult Index()
-        {
-            //var FullUrl = HttpContext.Request.Path();
-            //string path = HttpContext.Current.Request.Url.AbsolutePath;
-            //var taskId = FullUrl.Split('/').Last();       
+        { 
 
             return View("../Task/Bidding");
         }
 
-        //public IActionResult SendBid(int taskId)
-        //{
+        public IActionResult SendBid(int taskId)
+        {
 
-        //    string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    var q = new AddBid(_configuration);
-        //    string Supid = q.FindSupId();
-        //    var b = new BidEntity
-        //    {
-                          
-        //        Bid = int.Parse(HttpContext.Request.Form["Bid"]),                
-        //        ContributorId = userId,
-        //        SupplierId = SupId,
-        //        TaskId = taskId
-                
-        //    };
-        //    //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
+            string ContributorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var q = new AddBid(_configuration);
+            string SupId = q.FindSupId(taskId);
+            int bid = int.Parse(HttpContext.Request.Form["Bid"]);
+            var b = new BidEntity
+            {
 
+                Bid = bid,
+                ContributorId = ContributorId,
+                SupplierId = SupId,
+                TaskId = taskId,
+                Confirmation = 0
 
-            
-        //    return RedirectToAction("Index");
-        //}
+            };
+
+            q.InsertBid(b);
+            q.InsertBidIntoTask(bid, taskId);
+
+            return RedirectToAction("Index");
+        }
 
 
 

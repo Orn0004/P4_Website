@@ -1,6 +1,7 @@
 ﻿@model BidEntity
 @{
     ViewData["Title"] = "Bidding";
+    var url = ViewContext.RouteData.Values["taskId"];
 }
 
     <form method="get">
@@ -9,7 +10,7 @@
 
 <form asp-controller="Bidding" asp-action="SendBid" method="post">
     <label for="Bid">Bid :</label>
-    <input type="number" id="quantity" name="Bid">
+    <input type="number" id="quantity" name="Bid">DKK
     <input type="submit" value="Submit" />
 </form>
 

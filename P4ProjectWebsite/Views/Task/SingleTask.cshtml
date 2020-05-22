@@ -1,4 +1,7 @@
-﻿@model IEnumerable<TaskEntity>
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@model IEnumerable<TaskEntity>
 @{
     ViewData["Title"] = "SingleTask";
 }
@@ -15,7 +18,7 @@
         <p>
             Place: @row.Location
         </p>
-        @if (@row.Bid == 0)
+        @if (@row.Bid == 10000)
         {
             <p>
                 Current bid: Not yet bid
@@ -24,19 +27,27 @@
         else
         {
             <p>
-                Current bid: @row.Bid DKK by "(Username)"
+                Current bid: @row.Bid DKK by @row.CreatedBy"
             </p>
         }
     </div>
-    <input type="button" value="Add Bid" onclick="openpopup()">
-
-
-
-    <script>
-        function openpopup()
-        {
-          window.open("@Url.Action( "Index", "Bidding", new { taskId = row.Id })","Categories","[width=100,height=200,scrollbars=no,resizable=no]")
-        }
-    </script>
+    @if ((await AuthorizationService.AuthorizeAsync(User, "ContributorAccess")).Succeeded)
+    {
+        <form asp-controller="Task" asp-action="SendBid" asp-route-taskId="@row.Id" asp-route-CurrentBid="@row.Bid" method="post">
+            <label for="Bid">Bid :</label>
+            <input type="number" id="newBid" name="Bid">DKK
+            <input type="submit" onclick="validateForm(@row.Bid)" id="submitButton" value="Bid on task" />
+        </form>
+    }
 }
+<script>
+    function validateForm(currentBid) {
+        var newBid = document.getElementById("newBid").value;
+        if (newBid > currentBid) {
+            alert("Error: Your bid is higher than the current bid. Make a lower Bid.");
+        } else {
+            alert("Bid Successfully");
+        }
+    }
+</script>
 

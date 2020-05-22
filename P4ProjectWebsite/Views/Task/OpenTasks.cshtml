@@ -26,7 +26,7 @@
                 <td>@row.Duration Hours</td>
                 <td>@row.Location</td>
                 <td>@row.Category</td>
-                @if (@row.Bid == 0)
+                @if (@row.Bid == 10000)
                 {
                     <td>Not yet bid</td>
                 }
@@ -38,8 +38,6 @@
                 <td>@row.CreatedBy</td>
                 <td><button>Bid</button></td>
             </tr>
-
-
         }
     </tbody>
 </table>

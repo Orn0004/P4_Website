@@ -15,21 +15,21 @@ namespace P4ProjectWebsite.Models.Queries
         {
             ConnectionString = configuration.GetConnectionString("P4Database");
         }
-        public void InsertBid(BidEntity bids)
+        public void InsertBid(BidEntity bid)
         {
             // connects to the database.
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 // create a variable with the query command
-                string query = "INSERT INTO BidTable (Bid, ContributorId, SupplierId, TaskId, Confirmation) VALUES (@Bid, @ContributorId, @SupplierId, @TaskiD, 0)";
+                string query = "INSERT INTO Bids (Bid, ContributorId, SupplierId, TaskId, Confirmation) VALUES (@Bid, @ContributorId, @SupplierId, @TaskiD, @Confirmation)";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
-                    command.Parameters.AddWithValue("@Bid", bids.Bid);
-                    command.Parameters.AddWithValue("@ContributorId", bids.ContributorId);
-                    command.Parameters.AddWithValue("@SupplierId", bids.SupplierId);
-                    command.Parameters.AddWithValue("@TaskId", bids.TaskId);
-                    command.Parameters.AddWithValue("@Confirmation", bids.Confirmation);
+                    command.Parameters.AddWithValue("@Bid", bid.Bid);
+                    command.Parameters.AddWithValue("@ContributorId", bid.ContributorId);
+                    command.Parameters.AddWithValue("@SupplierId", bid.SupplierId);
+                    command.Parameters.AddWithValue("@TaskId", bid.TaskId);
+                    command.Parameters.AddWithValue("@Confirmation", bid.Confirmation);
 
                     cnn.Open();
                     int result = command.ExecuteNonQuery();
@@ -41,22 +41,43 @@ namespace P4ProjectWebsite.Models.Queries
                 }
             }
         }
-        //public string FindSupId()
-        //{
-        //    using (SqlConnection cnn = new SqlConnection(ConnectionString))
-        //    {
-        //        string query = $"SELECT CreatedBy FROM Tasks WHERE Id = '{TaskId}'";
 
-        //        using (SqlCommand command = new SqlCommand(query, cnn))
-        //        {
-        //            cnn.Open();
-        //            string result = (string)command.ExecuteScalar();
-        //            cnn.Close();
+        public void InsertBidIntoTask(int bid, int taskId)
+        {
+            // connects to the database.
+            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            {
+                // create a variable with the query command
+                string query = $"UPDATE Tasks SET Bid = '{bid}' WHERE Id = '{taskId}'";
 
-        //            return result;
-        //        }
-        //    }
-        //}
+                using (SqlCommand command = new SqlCommand(query, cnn))
+                {
+                    cnn.Open();
+                    int result = command.ExecuteNonQuery();
+                    cnn.Close();
+
+                    // Check Error
+                    if (result < 0)
+                        Console.WriteLine("Error inserting data into Database!");
+                }
+            }
+        }
+        public string FindSupId(int TaskId)
+        {
+            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            {
+                string query = $"SELECT CreatedBy FROM Tasks WHERE Id = '{TaskId}'";
+
+                using (SqlCommand command = new SqlCommand(query, cnn))
+                {
+                    cnn.Open();
+                    string result = (string)command.ExecuteScalar();
+                    cnn.Close();
+
+                    return result;
+                }
+            }
+        }
     }
 }
 

@@ -7,7 +7,7 @@ namespace P4ProjectWebsite.Models
 {
     public class BidEntity
     {
-        public bool Confirmation { get; set; }
+        public int Confirmation { get; set; }
         public int Bid { get; set; }
         public string SupplierId { get; set; }
         public string ContributorId { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using P4ProjectWebsite.Models;
@@ -9,6 +10,7 @@ using P4ProjectWebsite.Models.Queries;
 
 namespace P4ProjectWebsite.Controllers.Admin
 {
+    [Authorize(Policy = "AdminAccess")]
     public class CategoryController : Controller
     {
         private readonly IConfiguration _configuration;

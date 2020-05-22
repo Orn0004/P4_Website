@@ -7,17 +7,22 @@
   <ItemGroup>
     <Compile Remove="Views\NewFolder1\**" />
     <Compile Remove="Views\RegisterInfo\**" />
+    <Compile Remove="Views\Task\Bidding\NewFolder\**" />
     <Content Remove="Views\NewFolder1\**" />
     <Content Remove="Views\RegisterInfo\**" />
+    <Content Remove="Views\Task\Bidding\NewFolder\**" />
     <EmbeddedResource Remove="Views\NewFolder1\**" />
     <EmbeddedResource Remove="Views\RegisterInfo\**" />
+    <EmbeddedResource Remove="Views\Task\Bidding\NewFolder\**" />
     <None Remove="Views\NewFolder1\**" />
     <None Remove="Views\RegisterInfo\**" />
+    <None Remove="Views\Task\Bidding\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Areas\Identity\Pages\Account\Manage\MySignInManager.cs" />
     <Compile Remove="Controllers\RegisterInfoController.cs" />
+    <Compile Remove="Controllers\Supplier\SindexController.cs" />
     <Compile Remove="Migrations\20200521094517_Bids.cs" />
     <Compile Remove="Migrations\20200521094517_Bids.Designer.cs" />
     <Compile Remove="Models\UsersRole.cs" />
