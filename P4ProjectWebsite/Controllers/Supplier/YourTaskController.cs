@@ -5,15 +5,14 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using P4ProjectWebsite.Models;
 using P4ProjectWebsite.Models.Queries;
 
-namespace P4ProjectWebsite.Controllers
+namespace P4ProjectWebsite.Controllers.Supplier
 {
-    public class TaskController : Controller
+    public class YourTaskController : Controller
     {
         private readonly IConfiguration _configuration;
-        public TaskController(IConfiguration configuration)
+        public YourTaskController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -21,16 +20,13 @@ namespace P4ProjectWebsite.Controllers
         {
             return View();
         }
-        public IActionResult OpenTasks()
+        public IActionResult YourTasks()
         {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var q = new GetOpenTasks(_configuration);
-            return View(q.GetList());
+            string username = q.FindUsername(userId);
+            var yourList = q.GetYourList(username);
+            return View("../Task/Supplier/YourTasks", yourList);
         }
-        public IActionResult SingleTask(int id)
-        {
-            var q = new GetOpenTasks(_configuration);
-            return View(q.GetSingleTask(id));
-        }
-        
     }
 }

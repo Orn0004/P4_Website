@@ -14,6 +14,38 @@ namespace P4ProjectWebsite.Models.Queries
         {
             ConnectionString = configuration.GetConnectionString("P4Database");
         }
+        public string FindUsername(string userid)
+        {
+            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            {
+                string query = $"SELECT Username FROM AspNetUsers WHERE Id = '{userid}'";
+
+                using (SqlCommand command = new SqlCommand(query, cnn))
+                {
+                    cnn.Open();
+                    string result = (string)command.ExecuteScalar();
+                    cnn.Close();
+
+                    return result;
+                }
+            }
+        }
+        //public int findUserId(string username)
+        //{
+        //    using (SqlConnection cnn = new SqlConnection(ConnectionString))
+        //    {
+        //        string query = $"Select Id FROM AspNetUsers WHERE = '{username}'";
+
+        //        using (SqlCommand command = new SqlCommand(query, cnn))
+        //        {
+        //            cnn.Open();
+        //            int result = command.ExecuteNonQuery();
+        //            cnn.Close();
+
+        //            return result;
+        //        }
+        //    }
+        //}
         public void ReadRow(SqlCommand command, List<TaskEntity> row)
         {
             //reads the table.
@@ -51,7 +83,7 @@ namespace P4ProjectWebsite.Models.Queries
                 cnn.Open();
 
                 // create a variable with the query command.
-                SqlCommand command = new SqlCommand("SELECT * FROM Tasks ORDER BY ID", cnn);
+                SqlCommand command = new SqlCommand("SELECT * FROM Tasks ORDER BY DateCreated", cnn);
 
                 ReadRow(command, TaskList);
             }
@@ -66,6 +98,37 @@ namespace P4ProjectWebsite.Models.Queries
                     cnn.Close();
             }
             return TaskList;
+        }
+
+        public List<TaskEntity> GetYourList(string username)
+        {
+            // variable creation
+            var Tasks = new List<TaskEntity>();
+            SqlConnection cnn = null;
+
+            try
+            {
+                // connects to the database.
+                cnn = new SqlConnection(ConnectionString);
+                cnn.Open();
+
+                // create a variable with the query command.
+                SqlCommand command = new SqlCommand($"SELECT * FROM Tasks WHERE CreatedBy ='{username}' ORDER BY DateCreated", cnn);
+
+                //reads the table.
+                ReadRow(command, Tasks);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // closes the connection if cnn is null.
+                if (cnn != null)
+                    cnn.Close();
+            }
+            return Tasks;
         }
         public List<TaskEntity> GetSingleTask(int taskid)
         {

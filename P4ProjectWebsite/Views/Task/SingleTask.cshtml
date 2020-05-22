@@ -31,13 +31,22 @@
             </p>
         }
     </div>
+    <h3>Bid on task:</h3>
+
+
     @if ((await AuthorizationService.AuthorizeAsync(User, "ContributorAccess")).Succeeded)
     {
-        <form asp-controller="Task" asp-action="SendBid" asp-route-taskId="@row.Id" asp-route-CurrentBid="@row.Bid" method="post">
+        <form asp-controller="Bidding" asp-action="SendBid" asp-route-taskId="@row.Id" asp-route-CurrentBid="@row.Bid" method="post">
             <label for="Bid">Bid :</label>
             <input type="number" id="newBid" name="Bid">DKK
             <input type="submit" onclick="validateForm(@row.Bid)" id="submitButton" value="Bid on task" />
         </form>
+    }
+    else
+    {
+        <div>
+            Only contributors can bid on this task. <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a> with a contributor profile to proceed.
+        </div>
     }
 }
 <script>

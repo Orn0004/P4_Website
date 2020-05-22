@@ -29,32 +29,30 @@ namespace P4ProjectWebsite.Controllers
             return View("../Task/Bidding");
         }
 
-        public IActionResult SendBid(int taskId)
+        public IActionResult SendBid(int taskId, int currentBid)
         {
-
-            string ContributorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var q = new AddBid(_configuration);
-            string SupId = q.FindSupId(taskId);
             int bid = int.Parse(HttpContext.Request.Form["Bid"]);
-            var b = new BidEntity
+            if (bid < currentBid)
             {
+                string ContributorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var q = new AddBid(_configuration);
+                string SupId = q.FindSupId(taskId);
+                var b = new BidEntity
+                {
 
-                Bid = bid,
-                ContributorId = ContributorId,
-                SupplierId = SupId,
-                TaskId = taskId,
-                Confirmation = 0
+                    Bid = bid,
+                    ContributorId = ContributorId,
+                    SupplierId = SupId,
+                    TaskId = taskId,
+                    Confirmation = 0
 
-            };
+                };
 
-            q.InsertBid(b);
-            q.InsertBidIntoTask(bid, taskId);
+                q.InsertBid(b);
+                q.InsertBidIntoTask(bid, taskId);
+            }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("OpenTasks", "Task");
         }
-
-
-
-
     }
 }

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<P4ProjectWebsite.Models.TaskEntity>
+@{
+    ViewData["Title"] = "YourTasks";
+}
+<meta http-equiv="refresh" content="25" />
+<h1>Your active tasks</h1>
+
+<table>
+    <thead>
+
+        <tr>
+            <th>Title</th>
+            <th>Duration</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Current Bid</th>
+            <th>Task Created</th>
+            <th>Created by</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.Id }))'">
+                <td>@row.Title</td>
+                <td>@row.Duration Hours</td>
+                <td>@row.Location</td>
+                <td>@row.Category</td>
+                @if (@row.Bid == 10000)
+                {
+                    <td>Not yet bid</td>
+                }
+                else
+                {
+                    <td>@row.Bid DKK</td>
+                }
+                <td>@row.DateCreated</td>
+                <td>@row.CreatedBy</td>
+                <td><button>Bid</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    table, th, td {
+        border: solid 1px #bbbbbb;
+        border-collapse: collapse;
+        padding: 2px;
+    }
+</style>
