@@ -20,6 +20,13 @@ namespace P4ProjectWebsite.Controllers.Supplier
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Delete(int Id)
+        {
+            var q = new DeleteTask(_configuration); 
+            q.RemoveTask(Id);
+            return RedirectToAction("YourTasks");
+        }
         public IActionResult YourTasks()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

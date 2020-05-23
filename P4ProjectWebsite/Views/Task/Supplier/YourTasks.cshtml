@@ -37,7 +37,7 @@
                 <td>@row.DateCreated</td>
                 <td>@row.CreatedBy</td>
                 <td>
-                    @*<a asp-controller="Category" asp-action="Delete" asp-route-name="@row.Name" onclick="return confirm('Are you sure you want to delete the Category: @row.Name (@row.Type)?')">Delete</a>*@
+                    <a asp-controller="YourTask" asp-action="Delete" asp-route-Id="@row.Id" onclick="return confirm('Are you sure you want to delete the task: @row.Id?')">Delete</a>
                 </td>
             </tr>
         }
