@@ -36,20 +36,20 @@ namespace P4ProjectWebsite.Controllers
             {
                 string ContributorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var q = new AddBid(_configuration);
-                string SupId = q.FindSupId(taskId);
+                string ContributorName = q.FindContributorName(ContributorId);
+                string SupName = q.FindSupId(taskId);
                 var b = new BidEntity
                 {
-
                     Bid = bid,
-                    ContributorId = ContributorId,
-                    SupplierId = SupId,
+                    ContributorId = ContributorName,
+                    SupplierId = SupName,
                     TaskId = taskId,
-                    Confirmation = 0
-
+                    Confirmation = false
                 };
 
                 q.InsertBid(b);
-                q.InsertBidIntoTask(bid, taskId);
+                int LowestBid = q.LowestBidQuery(taskId);
+                q.InsertLowestBidIntoTask(LowestBid, taskId);
             }
 
             return RedirectToAction("OpenTasks", "Task");

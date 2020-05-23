@@ -13,7 +13,6 @@
             <th>Duration</th>
             <th>Location</th>
             <th>Category</th>
-            <th>Current Bid</th>
             <th>Task Created</th>
             <th>Created by</th>
         </tr>
@@ -26,14 +25,6 @@
                 <td>@row.Duration Hours</td>
                 <td>@row.Location</td>
                 <td>@row.Category</td>
-                @if (@row.Bid == 10000)
-                {
-                    <td>Not yet bid</td>
-                }
-                else
-                {
-                    <td>@row.Bid DKK</td>
-                }
                 <td>@row.DateCreated</td>
                 <td>@row.CreatedBy</td>
                 <td><button>Bid</button></td>

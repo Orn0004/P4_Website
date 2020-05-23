@@ -8,7 +8,7 @@ namespace P4ProjectWebsite.Models
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Bid { get; set; }
+        public int LowestBid { get; set; }
         public int Duration { get; set; }
         public int Id { get; set; }
         public string Location { get; set; }

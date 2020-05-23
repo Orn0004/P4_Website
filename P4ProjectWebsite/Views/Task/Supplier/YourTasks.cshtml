@@ -26,13 +26,13 @@
                 <td>@row.Duration Hours</td>
                 <td>@row.Location</td>
                 <td>@row.Category</td>
-                @if (@row.Bid == 10000)
+                @if (@row.LowestBid == 10000)
                 {
                     <td>Not yet bid</td>
                 }
                 else
                 {
-                    <td>@row.Bid DKK</td>
+                    <td>@row.LowestBid DKK</td>
                 }
                 <td>@row.DateCreated</td>
                 <td>@row.CreatedBy</td>

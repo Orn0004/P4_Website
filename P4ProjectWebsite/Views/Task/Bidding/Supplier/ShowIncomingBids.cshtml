@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BidEntity>
+@{
+    ViewData["Title"] = "Incoming Bids";
+}
+
+<h1>Incoming Bids on selected task </h1>
+<table>
+    <thead>
+        <tr>
+            <th>Contributor Name:</th>
+            <th>Bid</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var row in Model)
+        {
+            <tr>
+                <td>@row.ContributorId</td>
+                <td>@row.Bid</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<style>
+    table, th, td {
+        border: solid 1px #bbbbbb;
+        border-collapse: collapse;
+        padding: 2px;
+    }
+</style>

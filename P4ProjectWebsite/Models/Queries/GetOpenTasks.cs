@@ -30,6 +30,9 @@ namespace P4ProjectWebsite.Models.Queries
                 }
             }
         }
+
+        
+        
         //public int findUserId(string username)
         //{
         //    using (SqlConnection cnn = new SqlConnection(ConnectionString))
@@ -58,7 +61,7 @@ namespace P4ProjectWebsite.Models.Queries
                     {
                         Title = (string)reader[0],
                         Description = (string)reader[1],
-                        Bid = (int)reader[2],
+                        LowestBid = (int)reader[2],
                         Duration = (int)reader[3],
                         Id = (int)reader[4],
                         Location = (string)reader[5],

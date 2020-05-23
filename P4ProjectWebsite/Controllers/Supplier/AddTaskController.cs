@@ -43,7 +43,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
                 Title = HttpContext.Request.Form["Title"],
                 Description = HttpContext.Request.Form["Description"],
                 Location = HttpContext.Request.Form["Location"],
-                Bid = 10000,
+                LowestBid = 10000,
                 Duration = int.Parse(HttpContext.Request.Form["Duration"]),
                 Category = Request.Form["Category"],
                 CreatedBy = Username,

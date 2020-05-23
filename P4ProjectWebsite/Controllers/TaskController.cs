@@ -28,6 +28,7 @@ namespace P4ProjectWebsite.Controllers
         }
         public IActionResult SingleTask(int id)
         {
+            
             var q = new GetOpenTasks(_configuration);
             return View(q.GetSingleTask(id));
         }

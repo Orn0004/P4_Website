@@ -42,13 +42,32 @@ namespace P4ProjectWebsite.Models.Queries
             }
         }
 
-        public void InsertBidIntoTask(int bid, int taskId)
+        public int LowestBidQuery(int taskId)
         {
             // connects to the database.
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 // create a variable with the query command
-                string query = $"UPDATE Tasks SET Bid = '{bid}' WHERE Id = '{taskId}'";
+                string query = $"SELECT MIN (Bid) FROM Bids WHERE TaskId='{taskId}'";
+
+                using (SqlCommand command = new SqlCommand(query, cnn))
+                {
+                    cnn.Open();
+                    int result = (int)command.ExecuteScalar();
+                    cnn.Close();
+                    return result;
+                }
+            }
+        }
+
+
+        public void InsertLowestBidIntoTask(int bid, int taskId)
+        {
+            // connects to the database.
+            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            {
+                // create a variable with the query command
+                string query = $"UPDATE Tasks SET LowestBid = '{bid}' WHERE Id = '{taskId}'";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
@@ -67,6 +86,23 @@ namespace P4ProjectWebsite.Models.Queries
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 string query = $"SELECT CreatedBy FROM Tasks WHERE Id = '{TaskId}'";
+
+                using (SqlCommand command = new SqlCommand(query, cnn))
+                {
+                    cnn.Open();
+                    string result = (string)command.ExecuteScalar();
+                    cnn.Close();
+
+                    return result;
+                }
+            }
+        }
+
+        public string FindContributorName(string contributorId )
+        {
+            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            {
+                string query = $"SELECT UserName FROM AspNetUsers WHERE Id = '{contributorId}'";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
