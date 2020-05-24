@@ -115,6 +115,22 @@ namespace P4ProjectWebsite.Models.Queries
                 }
             }
         }
+        //public string FindContributorBids(string username)
+        //{
+        //    using (SqlConnection cnn = new SqlConnection(ConnectionString))
+        //    {
+        //        string query = $"SELECT * FROM Bids WHERE Id = '{username}'";
+
+        //        using (SqlCommand command = new SqlCommand(query, cnn))
+        //        {
+        //            cnn.Open();
+        //            string result = (string)command.ExecuteScalar();
+        //            cnn.Close();
+
+        //            return result;
+        //        }
+        //    }
+        //}
     }
 }
 

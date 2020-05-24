@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using P4ProjectWebsite.Models;
 using P4ProjectWebsite.Models.Queries;
 
 namespace P4ProjectWebsite.Controllers.Supplier
@@ -33,7 +34,12 @@ namespace P4ProjectWebsite.Controllers.Supplier
             var q = new GetOpenTasks(_configuration);
             string username = q.FindUsername(userId);
             var yourList = q.GetYourList(username);
-            return View("../Task/Supplier/YourTasks", yourList);
+            var yourArchivedList = q.GetYourArchivedList(username);
+            ViewBag.YourList = yourList;
+            ViewBag.ArchivedList = yourArchivedList;
+            return View("../Task/Supplier/YourTasks");
         }
+
+        
     }
 }

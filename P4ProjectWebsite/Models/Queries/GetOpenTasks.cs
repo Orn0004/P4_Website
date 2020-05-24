@@ -155,6 +155,36 @@ namespace P4ProjectWebsite.Models.Queries
             }
             return Tasks;
         }
+        public List<TaskEntity> GetYourArchivedList(string username)
+        {
+            // variable creation           
+            var Tasks = new List<TaskEntity>();
+            SqlConnection cnn = null;
+
+            try
+            {
+                // connects to the database.
+                cnn = new SqlConnection(ConnectionString);
+                cnn.Open();
+
+                // create a variable with the query command.
+                SqlCommand command = new SqlCommand($"SELECT * FROM ArchivedTasks WHERE CreatedBy ='{username}' ORDER BY DateCreated", cnn);
+
+                //reads the table.
+                ReadRow(command, Tasks);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // closes the connection if cnn is null.
+                if (cnn != null)
+                    cnn.Close();
+            }
+            return Tasks;
+        }
         public List<TaskEntity> GetSingleTask(int taskid)
         {
             // variable creation

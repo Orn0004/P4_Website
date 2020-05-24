@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BidEntity>
+
+@{
+    ViewData["Title"] = "OutcomingBids";
+}
+
+<h1>Your Bids </h1>
+<table>
+    <thead>
+        <tr>
+            <th>Supplier Name:</th>
+            <th>Your Bid</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var row in Model)
+        {
+            <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.TaskId }))'">
+                <td>@row.SupplierUsername</td>
+                <td>@row.Bid DKK</td>
+                <td>@row.DateCreated</td>
+
+            </tr>
+            
+        }
+
+    </tbody>
+</table>
+<style>
+    table, th, td {
+        border: solid 1px #bbbbbb;
+        border-collapse: collapse;
+        padding: 2px;
+    }
+</style>
