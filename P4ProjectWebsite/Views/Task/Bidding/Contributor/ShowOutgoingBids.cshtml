@@ -14,22 +14,27 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var row in ViewBag.BidList)
+        @if (ViewBag.BidList == null)
         {
-
-
-            <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.TaskId }))'">
-                <td>@row.SupplierUsername</td>
-                <td>@row.Bid DKK</td>
-                <td>@row.DateCreated</td>
+            <tr>
+                <td>no bids found</td>
             </tr>
-
-
+        }
+        else
+        {
+            @foreach (var row in ViewBag.BidList)
+            {
+                <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.TaskId }))'">
+                    <td>@row.SupplierUsername</td>
+                    <td>@row.Bid DKK</td>
+                    <td>@row.DateCreated</td>
+                </tr>
+            }
         }
 
     </tbody>
 </table>
-
+<h1> Your Confirmed Bids</h1>
 <table>
 
     <thead>
@@ -40,13 +45,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var row in ViewBag.ConfirmedList)
+        @if (ViewBag.ConfirmedBidList == null)
         {
-            <tr onclick="location.href = '@(Url.Action("ArchivedTask", "Task", new { id = row.TaskId }))'">
-                <td>@row.SupplierUsername</td>
-                <td>@row.Bid DKK</td>
-                <td>@row.DateCreated</td>
+            <tr>
+                <td>no bids found</td>
             </tr>
+        }
+        else
+        {
+            @foreach (var row in ViewBag.ConfirmedBidList)
+            {
+                <tr onclick="location.href = '@(Url.Action("ArchivedTask", "Task", new { id = row.TaskId }))'">
+                    <td>@row.SupplierUsername</td>
+                    <td>@row.Bid DKK</td>
+                    <td>@row.DateCreated</td>
+                </tr>
+            }
         }
     </tbody>
 </table>
