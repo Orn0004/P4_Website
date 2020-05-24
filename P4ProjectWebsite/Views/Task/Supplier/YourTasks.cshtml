@@ -38,12 +38,12 @@
                 <td>@row.CreatedBy</td>
                 <td>
                     <a asp-controller="YourTask" asp-action="Delete" asp-route-Id="@row.Id" onclick="return confirm('Are you sure you want to delete the task: @row.Id?')">Delete</a>
-
                 </td>
                 <td>
                     <a asp-controller="IncomingBids" asp-action="ShowIncomingBids" asp-route-taskId="@row.Id" asp-route-createdBy="@row.CreatedBy"> View Bids </a>
                 </td>
             </tr>
+            <a asp-controller="YourTask" asp-action="EditTask" asp-route-Id="@row.Id" onclick="return confirm('Do you want to edit the task: @row.Id?')">Edit</a>
         }
 
     </tbody>

@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@model IEnumerable<CategoryEntity>
+@{
+    ViewData["Title"] = "EditTask";
+}
+@{var QueryHousekeeping = from Type in Model
+                            where Type.Type == "Housekeeping"
+                            select Type; }
+@{var QueryGarden = from Type in Model
+                      where Type.Type == "Garden"
+                      select Type; }
+@{var QueryMisc = from Type in Model
+                    where Type.Type == "Misc"
+                    select Type; }
+<title>Edit Task: </title>
+
+@foreach (var row in ViewBag.Task)
+{
+
+    <form asp-controller="EditTask" asp-action="Edit" asp-route-taskId="@row.Id" method="post">
+        <label for="Title">Task Title:</label>
+        <br>
+        <input type="text" id="Title" name="Title" value="@row.Title" placeholder="Write a short description of what your task" required>
+        <br>
+        <label for="Description">Task Description:</label>
+        <br>
+        <input type="text" id="Description" value="@row.Description" name="Description" placeholder="Describe the task in detail e.g length, height and amount of work that needs to get done." required>
+        <br>
+        <label for="Duration">Estimated Work Duration:</label>
+        <br>
+        <input type="number" id="Duration" value="@row.Duration" name="Duration" placeholder="Amount of work hours required" required> Hours
+        <br>
+        <br>
+        <label for="Location">Location of task:</label>
+        <br>
+        <input type="text" id="Location" value="@row.Location" name="Location" placeholder="City, Zipcode, Country" required>
+        <br>
+
+        <br>
+
+        <div id="CategoryContainer">
+            <label for="Category"> Task Category: </label>
+            <select id="Category" name="Category">
+                <option disabled>Choose a category your task fits best in...</option>
+                <optgroup label="Housekeeping">
+                    @foreach (var cat1 in QueryHousekeeping)
+                    {
+                        <option value="@cat1.Name"> @cat1.Name </option>
+                    }
+                </optgroup>
+                <optgroup label="Garden">
+                    @foreach (var cat2 in QueryGarden)
+                    {
+                        <option value="@cat2.Name"> @cat2.Name </option>
+                    }
+                </optgroup>
+                <optgroup label="Miscellaneous">
+                    @foreach (var cat3 in QueryMisc)
+                    {
+                        <option value="@cat3.Name"> @cat3.Name </option>
+                    }
+                </optgroup>
+            </select>
+        </div>
+        <input type="submit" value="Edit" />
+    </form>
+}
