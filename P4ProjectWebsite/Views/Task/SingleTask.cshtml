@@ -1,76 +1,65 @@
 ﻿@using Microsoft.AspNetCore.Authorization
+@using P4ProjectWebsite.Models.Queries
+@using System.Security.Claims
+@using Microsoft.Extensions.Configuration
 @inject IAuthorizationService AuthorizationService
 
 @model IEnumerable<TaskEntity>
 @{
-    ViewData["Title"] = "SingleTask";
+        ViewData["Title"] = "SingleTask";
 }
 @foreach (var row in Model)
 {
 
-    <h1>@row.Title</h1>
-    <h2>@row.Category</h2>
-    <h3>Date Created: @row.DateCreated</h3>
-    <div>
-        <p>
-            @row.Description
-        </p>
-        <p>
-            Place: @row.Location
-        </p>
-        @if ((await AuthorizationService.AuthorizeAsync(User, "SupplierAccess")).Succeeded)
-        {
-            @if (@row.LowestBid == 10000)
+<h1>@row.Title</h1>
+<h2>@row.Category</h2>
+<h3>Date Created: @row.DateCreated</h3>
+<div>
+    <p>
+        @row.Description
+    </p>
+    <p>
+        Place: @row.Location
+    </p>
+    @if ((await AuthorizationService.AuthorizeAsync(User, "SupplierAccess")).Succeeded)
             {
-                <p>
-                    Current bid: Not yet bid.
-                </p>
-            }
-            else
-            {
-                <p>
-                    Current lowest bid: @row.LowestBid DKK.
-                </p>
-            }
-        }
-    </div>
-    <h3>Bid on task:</h3>
+    @if (@row.LowestBid == 10000)
+                {
+    <p>
+        Current bid: Not yet bid.
+    </p>
+                }
+                else
+                {
+    <p>
+        Current lowest bid: @row.LowestBid DKK.
+    </p>
+                }
+}
+</div>
+<h3>Bid on task:</h3>
 
 
-    @if ((await AuthorizationService.AuthorizeAsync(User, "ContributorAccess")).Succeeded)
+@if ((await AuthorizationService.AuthorizeAsync(User, "ContributorAccess")).Succeeded)
     {
-        <form asp-controller="Bidding" asp-action="SendBid" asp-route-taskId="@row.Id" asp-route-CurrentBid="@row.LowestBid" method="post">
-            <label for="Bid">Bid :</label>
-            <input type="number" id="newBid" name="Bid" required>DKK
-            <input type="submit" onclick="return confirm('Are you sure you want to bid?')" id="submitButton" value="Bid on task" />
-        </form>
+<form asp-controller="Bidding" asp-action="SendBid" asp-route-taskId="@row.Id" asp-route-CurrentBid="@row.LowestBid" method="post">
+    <label for="Bid">Bid :</label>
+    <input type="number" id="newBid" name="Bid" required>DKK
+    <input type="submit" onclick="return confirm('Are you sure you want to bid?')" id="submitButton" value="Bid on task" />
+</form>
     }
     else
     {
-        <div>
-            Only contributors can bid on this task. <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a> with a contributor profile to proceed.
-        </div>
+<div>
+    Only contributors can bid on this task. <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a> with a contributor profile to proceed.
+</div>
     }
-    <a asp-controller="IncomingBids" asp-action="ShowIncomingBids" asp-route-taskId="@row.Id"> View Bids </a>
-
-    <script>
+<script>
         function openpopup()
         {
-          window.open("@Url.Action( "Index", "Category")","Categories","[width=100,height=200,scrollbars=no,resizable=no]")
-        }
-
-        //function yesOrNo() {
-        //    Bid = document.getElementById("newBid")
-        //    if (confirm('Are you sure you want to bid' + Bid + '?')) {
-        //        // Save it!
-        //        console.log('Thing was saved to the database.');
-        //    } else {
-        //        // Do nothing!
-        //        console.log('Thing was not saved to the database.');
-        //    }
-        //}
-
-    </script>
+        window.open("@Url.Action( "Index", "Category")","Categories","[width=100,height=200,scrollbars=no,resizable=no]")
+        
+</script>
 }
 
 

@@ -41,7 +41,7 @@
 
             </td>
             <td>
-                <a asp-controller="IncomingBids" asp-action="ShowIncomingBids" asp-route-taskId="@row.Id"> View Bids </a>
+                <a asp-controller="IncomingBids" asp-action="ShowIncomingBids" asp-route-taskId="@row.Id" asp-route-createdBy="@row.CreatedBy"> View Bids </a>
             </td>
         </tr>
         }

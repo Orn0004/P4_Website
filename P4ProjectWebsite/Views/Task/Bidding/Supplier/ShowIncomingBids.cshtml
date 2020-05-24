@@ -20,6 +20,7 @@
                 <td>@row.ContributorUsername</td>
                 <td>@row.Bid DKK</td>
                 <td>@row.DateCreated</td>
+                <td><a asp-controller="IncomingBids" asp-action="Confirm" asp-route-bidId="@row.Id" asp-route-taskId="@row.TaskId">Confirm bid</a></td>
             </tr>
 
         }
