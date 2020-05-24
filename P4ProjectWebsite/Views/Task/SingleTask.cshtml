@@ -42,7 +42,7 @@
         <form asp-controller="Bidding" asp-action="SendBid" asp-route-taskId="@row.Id" asp-route-CurrentBid="@row.LowestBid" method="post">
             <label for="Bid">Bid :</label>
             <input type="number" id="newBid" name="Bid" required>DKK
-            <input type="submit" id="submitButton" value="Bid on task" />
+            <input type="submit" onclick="return confirm('Are you sure you want to bid?')" id="submitButton" value="Bid on task" />
         </form>
     }
     else
@@ -58,11 +58,20 @@
         {
           window.open("@Url.Action( "Index", "Category")","Categories","[width=100,height=200,scrollbars=no,resizable=no]")
         }
+
+        //function yesOrNo() {
+        //    Bid = document.getElementById("newBid")
+        //    if (confirm('Are you sure you want to bid' + Bid + '?')) {
+        //        // Save it!
+        //        console.log('Thing was saved to the database.');
+        //    } else {
+        //        // Do nothing!
+        //        console.log('Thing was not saved to the database.');
+        //    }
+        //}
+
     </script>
 }
 
 
 
-<script>
-   
-</script>

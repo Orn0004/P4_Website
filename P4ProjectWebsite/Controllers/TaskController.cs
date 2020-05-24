@@ -28,10 +28,20 @@ namespace P4ProjectWebsite.Controllers
         }
         public IActionResult SingleTask(int id)
         {
-            
+
             var q = new GetOpenTasks(_configuration);
-            return View(q.GetSingleTask(id));
+            var task = q.GetSingleTask(id);
+            bool taskIsEmpty = task.Any();
+            int LowestBid;
+            if (!taskIsEmpty)
+            {
+                LowestBid = q.LowestBidQuery(id);
+                q.InsertLowestBidIntoTask(LowestBid, id);
+            }
+           
+            
+            return View(task);
         }
-        
+
     }
 }

@@ -47,7 +47,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
                 Duration = int.Parse(HttpContext.Request.Form["Duration"]),
                 Category = Request.Form["Category"],
                 CreatedBy = Username,
-                DateCreated = DateTime.Now.ToString()
+                DateCreated = DateTime.Now.ToString("dddd, dd MMMM yyyy")
             };
             //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
             var a = new RelationTaskAddEntity

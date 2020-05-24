@@ -41,9 +41,11 @@ namespace P4ProjectWebsite.Models.Queries
                                 {
                                     Confirmation = (bool)reader[0],
                                     Bid = (int)reader[1],
-                                    SupplierId = (string)reader[2],
-                                    ContributorId = (string)reader[3],
-                                    TaskId = (int)reader[4]
+                                    SupplierUsername = (string)reader[2],
+                                    ContributorUsername = (string)reader[3],
+                                    Id = (int)reader[4],
+                                    TaskId = (int)reader[5],
+                                    DateCreated = (string)reader[6]
                                 }); 
                             }
                         }

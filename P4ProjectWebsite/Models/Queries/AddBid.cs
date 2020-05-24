@@ -21,15 +21,16 @@ namespace P4ProjectWebsite.Models.Queries
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 // create a variable with the query command
-                string query = "INSERT INTO Bids (Bid, ContributorId, SupplierId, TaskId, Confirmation) VALUES (@Bid, @ContributorId, @SupplierId, @TaskiD, @Confirmation)";
+                string query = "INSERT INTO Bids (Bid, ContributorUsername, SupplierUsername, TaskId, Confirmation, DateCreated) VALUES (@Bid, @ContributorUsername, @SupplierUsername, @TaskiD, @Confirmation, @DateCreated)";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
                     command.Parameters.AddWithValue("@Bid", bid.Bid);
-                    command.Parameters.AddWithValue("@ContributorId", bid.ContributorId);
-                    command.Parameters.AddWithValue("@SupplierId", bid.SupplierId);
+                    command.Parameters.AddWithValue("@ContributorUsername", bid.ContributorUsername);
+                    command.Parameters.AddWithValue("@SupplierUsername", bid.SupplierUsername);
                     command.Parameters.AddWithValue("@TaskId", bid.TaskId);
                     command.Parameters.AddWithValue("@Confirmation", bid.Confirmation);
+                    command.Parameters.AddWithValue("@DateCreated", bid.DateCreated);
 
                     cnn.Open();
                     int result = command.ExecuteNonQuery();
@@ -81,7 +82,7 @@ namespace P4ProjectWebsite.Models.Queries
                 }
             }
         }
-        public string FindSupId(int TaskId)
+        public string FindSupplierName(int TaskId)
         {
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {

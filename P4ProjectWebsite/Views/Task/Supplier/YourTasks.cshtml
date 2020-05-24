@@ -21,25 +21,29 @@
     <tbody>
         @foreach (var row in Model)
         {
-            <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.Id }))'">
-                <td>@row.Title</td>
-                <td>@row.Duration Hours</td>
-                <td>@row.Location</td>
-                <td>@row.Category</td>
-                @if (@row.LowestBid == 10000)
-                {
-                    <td>Not yet bid</td>
-                }
-                else
-                {
-                    <td>@row.LowestBid DKK</td>
-                }
-                <td>@row.DateCreated</td>
-                <td>@row.CreatedBy</td>
-                <td>
-                    <a asp-controller="YourTask" asp-action="Delete" asp-route-Id="@row.Id" onclick="return confirm('Are you sure you want to delete the task: @row.Id?')">Delete</a>
-                </td>
-            </tr>
+        <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.Id }))'">
+            <td>@row.Title</td>
+            <td>@row.Duration Hours</td>
+            <td>@row.Location</td>
+            <td>@row.Category</td>
+            @if (@row.LowestBid == 10000)
+            {
+                <td>Not yet bid</td>
+            }
+            else
+            {
+                <td>@row.LowestBid DKK</td>
+            }
+            <td>@row.DateCreated</td>
+            <td>@row.CreatedBy</td>
+            <td>
+                <a asp-controller="YourTask" asp-action="Delete" asp-route-Id="@row.Id" onclick="return confirm('Are you sure you want to delete the task: @row.Id?')">Delete</a>
+
+            </td>
+            <td>
+                <a asp-controller="IncomingBids" asp-action="ShowIncomingBids" asp-route-taskId="@row.Id"> View Bids </a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

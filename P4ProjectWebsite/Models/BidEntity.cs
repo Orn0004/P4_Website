@@ -9,9 +9,10 @@ namespace P4ProjectWebsite.Models
     {
         public bool Confirmation { get; set; }
         public int Bid { get; set; }
-        public string SupplierId { get; set; }
-        public string ContributorId { get; set; }
+        public string SupplierUsername { get; set; }
+        public string ContributorUsername { get; set; }
         public int Id { get; set; }
         public int TaskId { get; set; }
+        public string DateCreated { get; set; }
     }
 }
