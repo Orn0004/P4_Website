@@ -4,8 +4,8 @@
     ViewData["Title"] = "OutcomingBids";
 }
 
-<h1>Your Bids </h1>
 <table>
+    <h1> Your active Bids</h1>
     <thead>
         <tr>
             <th>Supplier Name:</th>
@@ -14,18 +14,40 @@
         </tr>
     </thead>
     <tbody>
-
-        @foreach (var row in Model)
+        @foreach (var row in ViewBag.BidList)
         {
+
+
             <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.TaskId }))'">
                 <td>@row.SupplierUsername</td>
                 <td>@row.Bid DKK</td>
                 <td>@row.DateCreated</td>
-
             </tr>
-            
+
+
         }
 
+    </tbody>
+</table>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Supplier Name:</th>
+            <th>Your Bid</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in ViewBag.ConfirmedList)
+        {
+            <tr onclick="location.href = '@(Url.Action("ArchivedTask", "Task", new { id = row.TaskId }))'">
+                <td>@row.SupplierUsername</td>
+                <td>@row.Bid DKK</td>
+                <td>@row.DateCreated</td>
+            </tr>
+        }
     </tbody>
 </table>
 <style>

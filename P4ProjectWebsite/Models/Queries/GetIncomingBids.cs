@@ -39,13 +39,12 @@ namespace P4ProjectWebsite.Models.Queries
                             {
                                 Bids.Add(new BidEntity
                                 {
-                                    Confirmation = (bool)reader[0],
-                                    Bid = (int)reader[1],
-                                    SupplierUsername = (string)reader[2],
-                                    ContributorUsername = (string)reader[3],
-                                    Id = (int)reader[4],
-                                    TaskId = (int)reader[5],
-                                    DateCreated = (string)reader[6]
+                                    Bid = (int)reader[0],
+                                    SupplierUsername = (string)reader[1],
+                                    ContributorUsername = (string)reader[2],
+                                    Id = (int)reader[3],
+                                    TaskId = (int)reader[4],
+                                    DateCreated = (string)reader[5]
                                 }); 
                             }
                         }

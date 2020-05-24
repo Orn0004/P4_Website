@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@model IEnumerable<TaskEntity>
+@{
+    ViewData["Title"] = "ArchivedTask";
+}
+@foreach (var row in Model)
+{
+
+    <h1>@row.Title</h1>
+    <h2>@row.Category</h2>
+    <h3>Date Created: @row.DateCreated</h3>
+    <div>
+        <p>
+            @row.Description
+        </p>
+        <p>
+            Place: @row.Location
+        </p
+    </div> 
+}

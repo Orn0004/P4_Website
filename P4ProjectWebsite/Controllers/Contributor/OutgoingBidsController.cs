@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -21,12 +20,14 @@ namespace P4ProjectWebsite.Controllers.Supplier
         public IActionResult Index()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var b = new GetOpenTasks(_configuration);
-            string username = b.FindUsername(userId);
             var g = new GetOutgoingBids(_configuration);
-            var getlist = g.GetList(username);
+            string username = g.FindUsername(userId);
+            var _BidList = g.GetList(username);
+            var _ConfirmedList = g.GetConfirmedList(username);
+            ViewBag.BidList = _BidList;
+            ViewBag.ConfirmedBidList = _ConfirmedList;
 
-            return View("../Task/Bidding/Contributor/ShowOutgoingBids", getlist);
+            return View("../Task/Bidding/Contributor/ShowOutgoingBids" );
         }
 
       

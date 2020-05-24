@@ -42,6 +42,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
         {
             var q = new ConfirmBid(_configuration);
             q.UpdateBids(bidId);
+            q.DeleteBid(taskId);
 
             if (q.ArchiveTask(taskId))
             {

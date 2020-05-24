@@ -43,7 +43,6 @@ namespace P4ProjectWebsite.Controllers
                     ContributorUsername = ContributorName,
                     SupplierUsername = SupName,
                     TaskId = taskId,
-                    Confirmation = false,
                     DateCreated = DateTime.Now.ToString("dddd, dd MMMM yyyy")
                 };
 

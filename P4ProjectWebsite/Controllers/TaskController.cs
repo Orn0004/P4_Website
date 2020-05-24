@@ -39,7 +39,13 @@ namespace P4ProjectWebsite.Controllers
                 q.InsertLowestBidIntoTask(LowestBid, id);
             }
            
-            
+            return View(task);
+        }
+
+        public IActionResult ArchivedTask(int id)
+        {
+            var q = new GetOpenTasks(_configuration);
+            var task = q.GetArchivedTask(id);
             return View(task);
         }
 

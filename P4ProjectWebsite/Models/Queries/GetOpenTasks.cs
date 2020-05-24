@@ -215,6 +215,36 @@ namespace P4ProjectWebsite.Models.Queries
             }
             return Task;
         }
+        public List<TaskEntity> GetArchivedTask(int taskid)
+        {
+            // variable creation
+            var Task = new List<TaskEntity>();
+            SqlConnection cnn = null;
+
+            try
+            {
+                // connects to the database.
+                cnn = new SqlConnection(ConnectionString);
+                cnn.Open();
+
+                // create a variable with the query command.
+                SqlCommand command = new SqlCommand($"SELECT * FROM ArchivedTasks WHERE Id ='{taskid}'", cnn);
+
+                //reads the table.
+                ReadRow(command, Task);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // closes the connection if cnn is null.
+                if (cnn != null)
+                    cnn.Close();
+            }
+            return Task;
+        }
     }
 }
 

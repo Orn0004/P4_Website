@@ -21,7 +21,7 @@ namespace P4ProjectWebsite.Models.Queries
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 // create a variable with the query command
-                string query = "INSERT INTO Bids (Bid, ContributorUsername, SupplierUsername, TaskId, Confirmation, DateCreated) VALUES (@Bid, @ContributorUsername, @SupplierUsername, @TaskiD, @Confirmation, @DateCreated)";
+                string query = "INSERT INTO Bids (Bid, ContributorUsername, SupplierUsername, TaskId, DateCreated) VALUES (@Bid, @ContributorUsername, @SupplierUsername, @TaskId, @DateCreated)";
 
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
@@ -29,7 +29,6 @@ namespace P4ProjectWebsite.Models.Queries
                     command.Parameters.AddWithValue("@ContributorUsername", bid.ContributorUsername);
                     command.Parameters.AddWithValue("@SupplierUsername", bid.SupplierUsername);
                     command.Parameters.AddWithValue("@TaskId", bid.TaskId);
-                    command.Parameters.AddWithValue("@Confirmation", bid.Confirmation);
                     command.Parameters.AddWithValue("@DateCreated", bid.DateCreated);
 
                     cnn.Open();

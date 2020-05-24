@@ -32,6 +32,7 @@
     <Compile Remove="Migrations\20200521094517_Bids.Designer.cs" />
     <Compile Remove="Models\Queries\GetYourOpenTasks.cs" />
     <Compile Remove="Models\UsersRole.cs" />
+    <Compile Remove="Views\Task\ArchivedTask.cs" />
   </ItemGroup>
 
   <ItemGroup>

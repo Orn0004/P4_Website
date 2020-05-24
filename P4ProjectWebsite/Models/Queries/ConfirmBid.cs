@@ -21,7 +21,7 @@ namespace P4ProjectWebsite.Models.Queries
             using (SqlConnection cnn = new SqlConnection(ConnectionString))
             {
                 // create a variable with the query command
-                string query = $"UPDATE Bids SET Confirmation ='1' WHERE Id = '{Id}'";
+                string query = $"INSERT INTO ConfirmedBids SELECT * FROM Bids WHERE Id = '{Id}'";
                 using (SqlCommand command = new SqlCommand(query, cnn))
                 {
                     cnn.Open();
@@ -51,6 +51,26 @@ namespace P4ProjectWebsite.Models.Queries
                         Console.WriteLine("Error deleting data from the Database!");
                     }
                     return true;
+                }
+            }
+        }
+
+        public void DeleteBid(int taskId)
+        {
+            // connects to the database.
+            using (SqlConnection cnn = new SqlConnection(ConnectionString))
+            {
+                // create a variable with the query command
+                string query = $"DELETE FROM Bids WHERE TaskId = {taskId};";
+                using (SqlCommand command = new SqlCommand(query, cnn))
+                {
+                    cnn.Open();
+                    int result = command.ExecuteNonQuery();
+                    cnn.Close();
+
+                    // Check Error
+                    if (result < 0)
+                        Console.WriteLine("Error deleting data from the Database!");
                 }
             }
         }
