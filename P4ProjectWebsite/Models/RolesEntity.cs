@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace P4ProjectWebsite.Roles
 {
-    public class Roles
+    public class RolesEntity
     {
         public const string AdminEndUser = "Admin";
         public const string SupplierEndUser = "Supplier";
