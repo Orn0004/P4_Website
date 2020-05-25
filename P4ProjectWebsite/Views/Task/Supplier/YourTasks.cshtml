@@ -69,7 +69,7 @@
         <tbody>
             @foreach (var row in ViewBag.ArchivedList)
             {
-                <tr onclick="location.href = '@(Url.Action("SingleTask", "Task", new { id = row.Id }))'">
+                <tr onclick="location.href = '@(Url.Action("ArchivedTask", "Task", new { id = row.Id }))'">
                     <td>@row.Title</td>
                     <td>@row.Duration Hours</td>
                     <td>@row.Location</td>
