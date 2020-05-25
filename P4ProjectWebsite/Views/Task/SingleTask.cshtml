@@ -18,28 +18,13 @@
     <p>
         Place: @row.Location
     </p>
-    @if ((await AuthorizationService.AuthorizeAsync(User, "SupplierAccess")).Succeeded)
-            {
-    @if (@row.LowestBid == 10000)
-                {
-    <p>
-        Current bid: Not yet bid.
-    </p>
-                }
-                else
-                {
-    <p>
-        Current lowest bid: @row.LowestBid DKK.
-    </p>
-                }
-}
 </div>
 <h3>Bid on task:</h3>
 
 
 @if ((await AuthorizationService.AuthorizeAsync(User, "ContributorAccess")).Succeeded)
     {
-<form asp-controller="Bidding" asp-action="SendBid" asp-route-taskId="@row.Id" asp-route-CurrentBid="@row.LowestBid" method="post">
+<form asp-controller="Bidding" asp-action="SendBid" asp-route-taskId="@row.Id" method="post">
     <label for="Bid">Bid :</label>
     <input type="number" id="newBid" name="Bid" required>DKK
     <input type="submit" onclick="return confirm('Are you sure you want to bid?')" id="submitButton" value="Bid on task" />

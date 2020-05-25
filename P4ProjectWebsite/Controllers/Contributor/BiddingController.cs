@@ -29,7 +29,7 @@ namespace P4ProjectWebsite.Controllers
             return View("../Task/Bidding");
         }
 
-        public IActionResult SendBid(int taskId, int currentBid)
+        public IActionResult SendBid(int taskId)
         {
             int bid = int.Parse(HttpContext.Request.Form["Bid"]);
           
@@ -47,8 +47,6 @@ namespace P4ProjectWebsite.Controllers
                 };
 
                 q.InsertBid(b);
-                int LowestBid = q.LowestBidQuery(taskId);
-                q.InsertLowestBidIntoTask(LowestBid, taskId);
 
             return RedirectToAction("OpenTasks", "Task");
         }

@@ -67,13 +67,12 @@ namespace P4ProjectWebsite.Models.Queries
                     {
                         Title = (string)reader[0],
                         Description = (string)reader[1],
-                        LowestBid = (int)reader[2],
-                        Duration = (int)reader[3],
-                        Id = (int)reader[4],
-                        Location = (string)reader[5],
-                        Category = (string)reader[6],
-                        CreatedBy = (string)reader[7],
-                        DateCreated = (string)reader[8]
+                        Duration = (int)reader[2],
+                        Id = (int)reader[3],
+                        Location = (string)reader[4],
+                        Category = (string)reader[5],
+                        CreatedBy = (string)reader[6],
+                        DateCreated = (string)reader[7]
 
                     });
                 }
