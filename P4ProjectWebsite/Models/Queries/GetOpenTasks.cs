@@ -31,24 +31,8 @@ namespace P4ProjectWebsite.Models.Queries
             }
         }
 
-        public int LowestBidQuery(int taskId)
-        {
-            // connects to the database.
-            using (SqlConnection cnn = new SqlConnection(ConnectionString))
-            {
-                // create a variable with the query command
-                string query = $"SELECT MIN (Bid) FROM Bids WHERE TaskId='{taskId}'";
-
-                using (SqlCommand command = new SqlCommand(query, cnn))
-                {
-                    cnn.Open();
-                    int result = (int)command.ExecuteScalar();
-                    cnn.Close();
-
-                    return result;
-                }
-            }
-        }
+      
+        
 
         public void InsertLowestBidIntoTask(int bid, int taskId)
         {

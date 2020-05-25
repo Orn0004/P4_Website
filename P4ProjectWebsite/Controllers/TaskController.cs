@@ -31,13 +31,7 @@ namespace P4ProjectWebsite.Controllers
 
             var q = new GetOpenTasks(_configuration);
             var task = q.GetSingleTask(id);
-            bool taskIsEmpty = task.Any();
-            int LowestBid;
-            if (!taskIsEmpty)
-            {
-                LowestBid = q.LowestBidQuery(id);
-                q.InsertLowestBidIntoTask(LowestBid, id);
-            }
+            
            
             return View(task);
         }

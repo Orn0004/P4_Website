@@ -56,8 +56,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
                 //Categoryid = CategoryId
             };
             
-            q.InsertTask(b);
-            q.InsertRelation(a);
+            q.InsertTask(b);            
             return RedirectToAction("Index");
         }
 
