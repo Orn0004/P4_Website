@@ -48,12 +48,7 @@ namespace P4ProjectWebsite.Controllers.Supplier
                 CreatedBy = Username,
                 DateCreated = DateTime.Now.ToString("dddd, dd MMMM yyyy")
             };
-            //int CategoryId = q.FindCategoryId(Request.Form["Category"]);
-            var a = new RelationTaskAddEntity
-            {
-                Userid = userId,
-                //Categoryid = CategoryId
-            };
+            
             
             q.InsertTask(b);            
             return RedirectToAction("Index");
