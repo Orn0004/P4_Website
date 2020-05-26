@@ -8,8 +8,8 @@
 <table>
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
+            <th>Category</th>
+            <th>Sub-Category</th>
             <th></th>
         </tr>
     </thead>
@@ -24,8 +24,8 @@
         @foreach (var row in Model)
         {
             <tr>
-                <td>@row.Name</td>
                 <td>@row.Type</td>
+                <td>@row.Name</td>
 
                 <td>
                     <a asp-controller="Category" asp-action="Delete" asp-route-name="@row.Name" onclick="return confirm('Are you sure you want to delete the Category: @row.Name (@row.Type)?')">Delete</a>
