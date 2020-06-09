@@ -12,7 +12,7 @@ using P4ProjectWebsite.Roles;
 
 namespace P4ProjectWebsite.Controllers
 {
-    //[Authorize(Policy = "AdminAccess")]
+    [Authorize(Policy = "AdminAccess")]
     public class RoleController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -80,7 +80,6 @@ namespace P4ProjectWebsite.Controllers
         public async Task<IActionResult> UpdateRole (RolesEntityUpdate vm)
         {
             
-            // assigns a variable that finds the user that has that specific email address.
             var user = await _userManager.FindByEmailAsync(vm.UserEmail);
 
             if (vm.Delete)
